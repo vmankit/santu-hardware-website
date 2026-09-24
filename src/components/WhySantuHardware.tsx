@@ -41,12 +41,12 @@ export const WhySantuHardware: React.FC = () => {
           {STORE_CONFIG.whyChooseUs.map((card, idx) => (
             <div
               key={idx}
-              className="bg-slate-50 rounded-2xl p-5 border border-slate-200 hover:border-slate-300 transition-colors"
+              className="bg-white rounded-2xl p-5 border border-stoneWarm-200 hover:border-terracotta-400 hover:shadow-md transition-all duration-300 group"
             >
-              <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center mb-3">
+              <div className="w-10 h-10 rounded-xl bg-stoneWarm-100 group-hover:bg-terracotta-50 border border-stoneWarm-200 group-hover:border-terracotta-200 flex items-center justify-center mb-3 transition-colors">
                 {getIcon(card.icon)}
               </div>
-              <h3 className="font-display font-extrabold text-base text-slate-900 mb-1.5">
+              <h3 className="font-display font-extrabold text-base text-slate-900 group-hover:text-terracotta-700 transition-colors mb-1.5">
                 {card.title}
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">

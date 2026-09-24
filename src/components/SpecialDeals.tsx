@@ -58,19 +58,21 @@ export const SpecialDeals: React.FC = () => {
   ];
 
   return (
-    <section id="special-deals" className="py-12 sm:py-16 bg-slate-50 border-b border-slate-200">
+    <section id="special-deals" className="py-12 sm:py-16 bg-stoneWarm-100 border-b border-stoneWarm-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
-            Direct Store Pricing
+          <div className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-terracotta-700 bg-terracotta-50 border border-terracotta-200 px-3 py-1 rounded-full mb-3 shadow-xs">
+            <span>Authorised Retailer</span>
+            <span>•</span>
+            <span>Direct Sourcing</span>
           </div>
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-2">
             Special Paint Deals
           </h2>
           <p className="text-sm sm:text-base text-slate-600 font-medium">
-            Great prices on leading paint brands. Contact us for today's price and availability.
+            Best prices on leading paint brands. Inquire on WhatsApp or call for today's price and stock availability.
           </p>
         </div>
 
@@ -82,7 +84,7 @@ export const SpecialDeals: React.FC = () => {
               className="card-retail-premium rounded-2xl flex flex-col justify-between overflow-hidden relative group"
             >
               {/* Brand Top Color Accent Bar */}
-              <div className={`h-2 w-full ${deal.accentTop}`} />
+              <div className={`h-2.5 w-full ${deal.accentTop}`} />
 
               <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
                 <div>
@@ -111,7 +113,7 @@ export const SpecialDeals: React.FC = () => {
                   <ul className="space-y-2 mb-6 pt-3 border-t border-slate-100">
                     {deal.highlights.map((point, idx) => (
                       <li key={idx} className="flex items-center gap-2 text-xs text-slate-700 font-medium">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-terracotta-600 shrink-0" />
                         <span>{point}</span>
                       </li>
                     ))}
@@ -133,7 +135,7 @@ export const SpecialDeals: React.FC = () => {
 
                   <a
                     href={STORE_CONFIG.phoneTel}
-                    className="w-full inline-flex items-center justify-center gap-1.5 py-1.5 px-3 text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors"
+                    className="w-full inline-flex items-center justify-center gap-1.5 py-1.5 px-3 text-xs font-semibold text-slate-600 hover:text-terracotta-700 transition-colors"
                   >
                     <Phone className="w-3.5 h-3.5 text-slate-400" />
                     <span>Call store: {STORE_CONFIG.phoneShort}</span>
@@ -145,9 +147,9 @@ export const SpecialDeals: React.FC = () => {
         </div>
 
         {/* Human contractor slip banner with tactile styling */}
-        <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-5">
+        <div className="bg-white rounded-2xl border border-stoneWarm-200 shadow-md p-5 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-5">
           <div className="flex items-center gap-4 text-center sm:text-left">
-            <div className="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-xs">
+            <div className="w-12 h-12 rounded-xl bg-terracotta-600 text-white flex items-center justify-center shrink-0 shadow-sm">
               <Camera className="w-6 h-6" />
             </div>
             <div>
@@ -164,7 +166,7 @@ export const SpecialDeals: React.FC = () => {
             href={STORE_CONFIG.getSlipWhatsAppUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-tactile-dark touch-target inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold shrink-0 transition-transform active:scale-95"
+            className="btn-tactile-dark touch-target inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-bold shrink-0 transition-transform active:scale-95 shadow-sm"
           >
             <MessageSquare className="w-4 h-4 text-whatsapp" />
             <span>Send List on WhatsApp</span>

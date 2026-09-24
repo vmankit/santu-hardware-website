@@ -25,11 +25,14 @@ export const HowToOrder: React.FC = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 bg-slate-50 border-b border-slate-200">
+    <section className="py-12 sm:py-16 bg-stoneWarm-100 border-b border-stoneWarm-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-terracotta-700 bg-terracotta-50 border border-terracotta-200 px-3 py-1 rounded-full mb-3 shadow-xs">
+            Simple 3-Step Process
+          </div>
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-2">
             How to Order
           </h2>
@@ -45,14 +48,14 @@ export const HowToOrder: React.FC = () => {
             return (
               <div
                 key={step.num}
-                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between"
+                className="bg-white rounded-2xl p-6 border border-stoneWarm-200 shadow-md hover:border-terracotta-400 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-display font-black text-3xl text-slate-900">
+                    <span className="font-display font-black text-3xl text-terracotta-600 group-hover:scale-105 transition-transform">
                       {step.num}
                     </span>
-                    <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700">
+                    <div className="w-10 h-10 rounded-xl bg-stoneWarm-100 group-hover:bg-terracotta-50 border border-stoneWarm-200 group-hover:border-terracotta-200 flex items-center justify-center text-slate-700 group-hover:text-terracotta-600 transition-colors">
                       <Icon className="w-5 h-5" />
                     </div>
                   </div>
@@ -77,7 +80,7 @@ export const HowToOrder: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             id="how-to-order-cta"
-            className="touch-target inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-whatsapp hover:bg-emerald-600 text-white font-bold text-sm sm:text-base active:scale-95 transition-all shadow-sm"
+            className="btn-tactile-whatsapp touch-target inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-white font-extrabold text-sm sm:text-base active:scale-95 transition-all shadow-whatsapp"
           >
             <MessageSquare className="w-5 h-5" />
             <span>Start Your Order on WhatsApp</span>

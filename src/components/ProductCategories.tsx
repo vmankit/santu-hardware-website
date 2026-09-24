@@ -62,10 +62,10 @@ export const ProductCategories: React.FC = () => {
             <div
               key={cat.id}
               onClick={() => setSelectedCategory(cat)}
-              className="cursor-pointer bg-white rounded-2xl border border-slate-200 hover:border-slate-400 card-retail flex flex-col justify-between group overflow-hidden shadow-sm"
+              className="cursor-pointer bg-white rounded-2xl border border-stoneWarm-200 hover:border-terracotta-500 flex flex-col justify-between group overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
             >
               {/* Product Photograph Header */}
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 border-b border-slate-100">
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 border-b border-stoneWarm-200">
                 <img
                   src={cat.image}
                   alt={`${cat.name} supplies at Santu Hardware`}
@@ -76,7 +76,7 @@ export const ProductCategories: React.FC = () => {
                 />
                 
                 {/* Category Icon Badge */}
-                <div className="absolute top-2.5 left-2.5 p-1.5 rounded-lg bg-white/95 backdrop-blur-sm shadow-sm flex items-center gap-1.5 border border-slate-200/60">
+                <div className="absolute top-2.5 left-2.5 p-1.5 rounded-lg bg-white/95 backdrop-blur-sm shadow-sm flex items-center gap-1.5 border border-stoneWarm-200">
                   {getIcon(cat.iconName)}
                   <span className="text-[11px] font-bold text-slate-900 hidden sm:inline">
                     {cat.name}
@@ -84,7 +84,7 @@ export const ProductCategories: React.FC = () => {
                 </div>
 
                 {cat.badge && (
-                  <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-slate-900 text-white shadow-sm">
+                  <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-terracotta-600 text-white shadow-sm">
                     {cat.badge}
                   </div>
                 )}
@@ -94,7 +94,7 @@ export const ProductCategories: React.FC = () => {
               <div className="p-3.5 sm:p-5 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between gap-1 mb-1">
-                    <h3 className="font-display font-extrabold text-base sm:text-lg text-slate-900 group-hover:text-brand-700 transition-colors">
+                    <h3 className="font-display font-extrabold text-base sm:text-lg text-slate-900 group-hover:text-terracotta-600 transition-colors">
                       {cat.name}
                     </h3>
                     <span className="text-[11px] font-bold text-slate-400">
@@ -107,7 +107,7 @@ export const ProductCategories: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-700 group-hover:text-brand-700">
+                <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-700 group-hover:text-terracotta-600">
                   <span>View Products</span>
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </div>

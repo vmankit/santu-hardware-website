@@ -16,10 +16,10 @@ export const MobileBottomBar: React.FC = () => {
         <a
           href={STORE_CONFIG.phoneTel}
           id="mobile-bar-call"
-          className="touch-target flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-slate-900 active:bg-slate-800 text-white font-extrabold text-[11px] tracking-tight transition-transform active:scale-95 shadow-sm border border-slate-700"
+          className="touch-target flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-terracotta-600 active:bg-terracotta-700 text-white font-extrabold text-[11px] tracking-tight transition-transform active:scale-95 shadow-terracotta border border-terracotta-500"
           aria-label="Call 9097441600"
         >
-          <Phone className="w-4 h-4 text-emerald-400 mb-0.5" />
+          <Phone className="w-4 h-4 text-white mb-0.5" />
           <span>CALL</span>
         </a>
 

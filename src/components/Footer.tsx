@@ -17,16 +17,16 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-slate-900 text-white pt-12 pb-16 border-t border-slate-800">
+    <footer className="bg-navy-900 text-white pt-12 pb-20 md:pb-14 border-t border-navy-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-slate-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-navy-800">
           
           {/* Brand Info */}
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-xl bg-brand-600 flex items-center justify-center text-white font-extrabold font-display">
+              <div className="w-9 h-9 rounded-xl bg-terracotta-600 flex items-center justify-center text-white font-extrabold font-display">
                 S
               </div>
               <span className="font-display font-black text-xl tracking-tight text-white">
@@ -34,12 +34,12 @@ export const Footer: React.FC = () => {
               </span>
             </div>
             
-            <p className="text-xs font-bold uppercase tracking-wider text-brand-400">
+            <p className="text-xs font-bold uppercase tracking-wider text-amber-400">
               Paints • Hardware • Plumbing • Electrical
             </p>
             
             <p className="text-xs text-slate-400 leading-relaxed font-medium">
-              {STORE_CONFIG.mainSellingMessage}. Your local destination for genuine paints and hardware supplies.
+              {STORE_CONFIG.mainSellingMessage}. Your trusted local destination for genuine paints and hardware supplies.
             </p>
           </div>
 

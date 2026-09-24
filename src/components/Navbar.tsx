@@ -57,11 +57,36 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
+      {/* Top Announcement Bar - Mahakal Hardware inspired */}
+      <div className="bg-navy-900 border-b border-navy-800 text-white text-[11px] sm:text-xs py-2 px-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2 truncate">
+            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-terracotta-600 text-white text-[10px] font-black shrink-0">
+              🚚
+            </span>
+            <span className="font-bold text-slate-200 truncate">
+              <span className="text-gold-400 font-extrabold uppercase">Free Home Delivery</span> Available Within 30 KM • Direct Store Rates
+            </span>
+          </div>
+
+          <div className="hidden sm:flex items-center gap-4 shrink-0 font-semibold">
+            <span className="text-slate-400 text-[11px]">Special Deals on JK Maxx • Birla Opus • Asian Paints</span>
+            <a
+              href={STORE_CONFIG.phoneTel}
+              className="font-mono text-terracotta-400 hover:text-white font-bold flex items-center gap-1 transition-colors"
+            >
+              <Phone className="w-3 h-3 text-emerald-400" />
+              <span>{STORE_CONFIG.phoneShort}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
           isScrolled
             ? 'glass-header shadow-[0_4px_20px_rgba(0,0,0,0.06)] py-2.5'
-            : 'bg-white border-b border-slate-200/80 py-3.5'
+            : 'bg-white border-b border-stoneWarm-200 py-3 sm:py-3.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,15 +97,20 @@ export const Navbar: React.FC = () => {
               className="flex items-center gap-3 group focus:outline-none"
               aria-label="Santu Hardware Home"
             >
-              <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-white shadow-sm group-hover:bg-brand-700 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-terracotta-600 border border-terracotta-700 flex items-center justify-center text-white shadow-sm group-hover:bg-terracotta-700 transition-colors">
                 <span className="font-extrabold text-xl tracking-tight font-display text-white">S</span>
               </div>
               <div className="flex flex-col">
-                <span className="font-display font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-none group-hover:text-brand-700 transition-colors">
-                  {STORE_CONFIG.businessName}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="font-display font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-none group-hover:text-terracotta-600 transition-colors">
+                    {STORE_CONFIG.businessName}
+                  </span>
+                  <span className="hidden sm:inline-block text-[9px] font-black uppercase px-1.5 py-0.5 rounded bg-terracotta-50 text-terracotta-700 border border-terracotta-200">
+                    Retail Store
+                  </span>
+                </div>
                 <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 mt-1">
-                  Paints • Hardware • Electrical
+                  Paints • Hardware • Plumbing • Electrical
                 </span>
               </div>
             </a>
@@ -91,7 +121,7 @@ export const Navbar: React.FC = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
+                  className="px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-slate-600 hover:text-terracotta-600 hover:bg-terracotta-50 rounded-lg transition-colors"
                 >
                   {link.label}
                 </a>
@@ -103,11 +133,11 @@ export const Navbar: React.FC = () => {
               <a
                 href={STORE_CONFIG.phoneTel}
                 id="header-call-btn"
-                className="btn-tactile-dark inline-flex items-center gap-1.5 px-4 py-2 text-xs rounded-xl"
+                className="btn-tactile-terracotta inline-flex items-center gap-1.5 px-4 py-2 text-xs rounded-xl"
                 title="Call 9097441600"
               >
-                <Phone className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Call Now</span>
+                <Phone className="w-3.5 h-3.5" />
+                <span>Call {STORE_CONFIG.phoneShort}</span>
               </a>
 
               <a
@@ -124,11 +154,19 @@ export const Navbar: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <div className="flex lg:hidden items-center gap-2">
+              <a
+                href={STORE_CONFIG.phoneTel}
+                className="btn-tactile-terracotta sm:hidden inline-flex items-center justify-center p-2 rounded-xl text-white"
+                aria-label="Call Store"
+              >
+                <Phone className="w-4 h-4" />
+              </a>
+
               <button
                 type="button"
                 id="mobile-menu-toggle"
                 onClick={() => setIsOpen(!isOpen)}
-                className="touch-target inline-flex items-center justify-center p-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-900"
+                className="touch-target inline-flex items-center justify-center p-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-terracotta-600"
                 aria-expanded={isOpen}
                 aria-label="Toggle navigation menu"
               >
