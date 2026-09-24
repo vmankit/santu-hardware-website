@@ -23,19 +23,19 @@ export const ProductCategories: React.FC = () => {
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'Paintbrush':
-        return <Paintbrush className="w-5 h-5 text-slate-800" />;
+        return <Paintbrush className="w-4 h-4 text-slate-900" />;
       case 'Wrench':
-        return <Wrench className="w-5 h-5 text-slate-800" />;
+        return <Wrench className="w-4 h-4 text-slate-900" />;
       case 'Droplets':
-        return <Droplets className="w-5 h-5 text-slate-800" />;
+        return <Droplets className="w-4 h-4 text-slate-900" />;
       case 'Zap':
-        return <Zap className="w-5 h-5 text-slate-800" />;
+        return <Zap className="w-4 h-4 text-slate-900" />;
       case 'Hammer':
-        return <Hammer className="w-5 h-5 text-slate-800" />;
+        return <Hammer className="w-4 h-4 text-slate-900" />;
       case 'Home':
-        return <Home className="w-5 h-5 text-slate-800" />;
+        return <Home className="w-4 h-4 text-slate-900" />;
       default:
-        return <Wrench className="w-5 h-5 text-slate-800" />;
+        return <Wrench className="w-4 h-4 text-slate-900" />;
     }
   };
 
@@ -45,62 +45,86 @@ export const ProductCategories: React.FC = () => {
         
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-10">
+          <div className="inline-block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
+            Store Inventory &amp; Departments
+          </div>
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-2">
             Everything You Need
           </h2>
           <p className="text-sm sm:text-base text-slate-600 font-medium">
-            Browse our core departments. Tap any category to view available fittings and products.
+            Explore our six core departments. Tap any category card to see the full list of products and fittings.
           </p>
         </div>
 
-        {/* Category Grid: 2-column on mobile, 3-column on desktop */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5 mb-10">
+        {/* 6 Category Cards with Authentic Product Photography */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-6 mb-12">
           {STORE_CONFIG.categories.map((cat) => (
             <div
               key={cat.id}
               onClick={() => setSelectedCategory(cat)}
-              className="cursor-pointer bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 hover:border-slate-400 hover:shadow-sm transition-all duration-200 flex flex-col justify-between group"
+              className="cursor-pointer bg-white rounded-2xl border border-slate-200 hover:border-slate-400 card-retail flex flex-col justify-between group overflow-hidden shadow-sm"
             >
-              <div>
-                {/* Icon & Category Item Count */}
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-colors">
-                    {getIcon(cat.iconName)}
-                  </div>
-                  <span className="text-[11px] font-bold text-slate-400">
-                    {cat.items.length} items
+              {/* Product Photograph Header */}
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 border-b border-slate-100">
+                <img
+                  src={cat.image}
+                  alt={`${cat.name} supplies at Santu Hardware`}
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                  loading="lazy"
+                  width="400"
+                  height="300"
+                />
+                
+                {/* Category Icon Badge */}
+                <div className="absolute top-2.5 left-2.5 p-1.5 rounded-lg bg-white/95 backdrop-blur-sm shadow-sm flex items-center gap-1.5 border border-slate-200/60">
+                  {getIcon(cat.iconName)}
+                  <span className="text-[11px] font-bold text-slate-900 hidden sm:inline">
+                    {cat.name}
                   </span>
                 </div>
 
-                {/* Name */}
-                <h3 className="font-display font-extrabold text-base sm:text-lg text-slate-900 mb-1 group-hover:text-brand-700 transition-colors">
-                  {cat.name}
-                </h3>
-
-                {/* Short description */}
-                <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-3">
-                  {cat.shortDescription}
-                </p>
+                {cat.badge && (
+                  <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider bg-slate-900 text-white shadow-sm">
+                    {cat.badge}
+                  </div>
+                )}
               </div>
 
-              {/* Tap to view */}
-              <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-600 group-hover:text-brand-700">
-                <span>View Products</span>
-                <span>→</span>
+              {/* Card Body */}
+              <div className="p-3.5 sm:p-5 flex-1 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between gap-1 mb-1">
+                    <h3 className="font-display font-extrabold text-base sm:text-lg text-slate-900 group-hover:text-brand-700 transition-colors">
+                      {cat.name}
+                    </h3>
+                    <span className="text-[11px] font-bold text-slate-400">
+                      {cat.items.length} items
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-3">
+                    {cat.shortDescription}
+                  </p>
+                </div>
+
+                <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-700 group-hover:text-brand-700">
+                  <span>View Products</span>
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Detailed Product Inventory Breakdown */}
+        {/* Detailed Product Inventory Breakdown Accordion */}
         <div className="bg-slate-50 rounded-2xl border border-slate-200 p-5 sm:p-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200 mb-5">
             <div>
               <h3 className="font-display font-extrabold text-base sm:text-lg text-slate-900">
-                Full Department Inventory
+                Department Item Lists
               </h3>
               <p className="text-xs text-slate-500">
-                Subcategories and fittings available for instant dispatch
+                Quick checklist of pipes, valves, wires, putty &amp; fittings stocked at our store
               </p>
             </div>
             <a
@@ -163,7 +187,7 @@ export const ProductCategories: React.FC = () => {
 
                       <div className="flex items-center justify-between pt-2">
                         <span className="text-xs text-slate-500">
-                          Looking for bulk rates on {cat.name.toLowerCase()}?
+                          Need bulk rates on {cat.name.toLowerCase()}?
                         </span>
                         <a
                           href={STORE_CONFIG.getWhatsAppUrl(cat.inquiryMessage)}
@@ -188,66 +212,72 @@ export const ProductCategories: React.FC = () => {
       {/* Modal Dialog when tapping a card */}
       {selectedCategory && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm" role="dialog" aria-modal="true">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-slate-200 relative max-h-[90vh] overflow-y-auto">
-            {/* Close button */}
-            <button
-              onClick={() => setSelectedCategory(null)}
-              className="touch-target absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 rounded-full hover:bg-slate-100"
-              aria-label="Close modal"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            {/* Header */}
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center">
-                {getIcon(selectedCategory.iconName)}
-              </div>
-              <div>
-                <h3 className="font-display font-black text-xl text-slate-900">
+          <div className="bg-white rounded-2xl max-w-md w-full shadow-xl border border-slate-200 relative max-h-[90vh] overflow-y-auto overflow-hidden">
+            {/* Modal Image Header */}
+            <div className="relative h-44 w-full bg-slate-100">
+              <img
+                src={selectedCategory.image}
+                alt={selectedCategory.name}
+                className="w-full h-full object-cover object-center"
+              />
+              <button
+                onClick={() => setSelectedCategory(null)}
+                className="touch-target absolute top-3 right-3 p-1.5 text-white bg-slate-900/70 hover:bg-slate-900 rounded-full transition-colors"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <div className="absolute bottom-3 left-4 right-4 text-white">
+                <span className="inline-block text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-slate-900/80 mb-1">
+                  Department
+                </span>
+                <h3 className="font-display font-black text-2xl drop-shadow">
                   {selectedCategory.name}
                 </h3>
-                <p className="text-xs text-slate-500 font-medium">
-                  {selectedCategory.shortDescription}
-                </p>
               </div>
             </div>
 
-            {/* Products list */}
-            <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
-              Available in Store
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
-              {selectedCategory.items.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800 flex items-center gap-2"
+            {/* Modal Content */}
+            <div className="p-5">
+              <p className="text-xs text-slate-500 font-medium mb-3">
+                {selectedCategory.shortDescription}
+              </p>
+
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                Available in Store
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
+                {selectedCategory.items.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800 flex items-center gap-2"
+                  >
+                    <CheckCircle2 className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Quick Actions */}
+              <div className="space-y-2">
+                <a
+                  href={STORE_CONFIG.getWhatsAppUrl(selectedCategory.inquiryMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 px-4 rounded-xl bg-whatsapp hover:bg-emerald-600 text-white font-bold text-sm text-center flex items-center justify-center gap-2 transition-colors"
                 >
-                  <CheckCircle2 className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
+                  <MessageSquare className="w-4 h-4" />
+                  <span>Ask for Price on WhatsApp</span>
+                </a>
 
-            {/* Quick Actions */}
-            <div className="space-y-2">
-              <a
-                href={STORE_CONFIG.getWhatsAppUrl(selectedCategory.inquiryMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-2.5 px-4 rounded-xl bg-whatsapp hover:bg-emerald-600 text-white font-bold text-sm text-center flex items-center justify-center gap-2 transition-colors"
-              >
-                <MessageSquare className="w-4 h-4" />
-                <span>Ask for Price on WhatsApp</span>
-              </a>
-
-              <a
-                href={STORE_CONFIG.phoneTel}
-                className="w-full py-2 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs text-center flex items-center justify-center gap-2 transition-colors"
-              >
-                <Phone className="w-3.5 h-3.5 text-slate-500" />
-                <span>Call Store: {STORE_CONFIG.phoneShort}</span>
-              </a>
+                <a
+                  href={STORE_CONFIG.phoneTel}
+                  className="w-full py-2 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs text-center flex items-center justify-center gap-2 transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Call Store: {STORE_CONFIG.phoneShort}</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -19,6 +19,7 @@ export interface CategoryItem {
   iconName: string;
   shortDescription: string;
   badge?: string;
+  image?: string;
   items: string[];
   inquiryMessage: string;
 }
@@ -150,7 +151,8 @@ export const STORE_CONFIG = {
       name: 'Paints',
       iconName: 'Paintbrush',
       badge: 'Featured',
-      shortDescription: 'Interior, exterior, primers & finishes',
+      image: '/images/cat-paints.jpg',
+      shortDescription: 'Interior, exterior, primers & wall putty',
       inquiryMessage: 'Hi Santu Hardware, I want to enquire about Paints and available products.',
       items: [
         'Interior Paints',
@@ -167,7 +169,8 @@ export const STORE_CONFIG = {
       id: 'hardware',
       name: 'Hardware',
       iconName: 'Wrench',
-      shortDescription: 'Locks, fasteners, hinges & fittings',
+      image: '/images/cat-hardware.jpg',
+      shortDescription: 'Locks, fasteners, hinges & handles',
       inquiryMessage: 'Hi Santu Hardware, I want to enquire about Hardware products and fittings.',
       items: [
         'General Hardware',
@@ -184,6 +187,7 @@ export const STORE_CONFIG = {
       id: 'plumbing',
       name: 'Plumbing',
       iconName: 'Droplets',
+      image: '/images/cat-plumbing.jpg',
       shortDescription: 'Pipes, fittings, valves & taps',
       inquiryMessage: 'Hi Santu Hardware, I want to enquire about Plumbing pipes and fittings.',
       items: [
@@ -201,6 +205,7 @@ export const STORE_CONFIG = {
       id: 'electrical',
       name: 'Electrical',
       iconName: 'Zap',
+      image: '/images/cat-electrical.jpg',
       shortDescription: 'Cables, switches, sockets & LEDs',
       inquiryMessage: 'Hi Santu Hardware, I want to enquire about Electrical supplies and lighting.',
       items: [
@@ -215,7 +220,8 @@ export const STORE_CONFIG = {
       id: 'tools',
       name: 'Tools',
       iconName: 'Hammer',
-      shortDescription: 'Hand tools, measuring & power accessories',
+      image: '/images/hardware-tools.jpg',
+      shortDescription: 'Hand tools, measuring & cutting',
       inquiryMessage: 'Hi Santu Hardware, I want to enquire about Tools and accessories.',
       items: [
         'Hand Tools',
@@ -229,6 +235,7 @@ export const STORE_CONFIG = {
       id: 'home-improvement',
       name: 'Home Improvement',
       iconName: 'Home',
+      image: '/images/paint-deals.jpg',
       shortDescription: 'Repair products & construction fittings',
       inquiryMessage: 'Hi Santu Hardware, I want to enquire about Home Improvement and repair products.',
       items: [
