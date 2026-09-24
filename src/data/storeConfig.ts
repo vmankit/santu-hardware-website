@@ -53,7 +53,7 @@ export const STORE_CONFIG = {
   
   // Images
   images: {
-    heroStore: '/images/hero-store.jpg',
+    heroStore: '/images/hero-clean.jpg',
     paintDeals: '/images/paint-deals.jpg',
     hardwareTools: '/images/hardware-tools.jpg',
     deliveryService: '/images/delivery-service.jpg',
@@ -70,6 +70,12 @@ export const STORE_CONFIG = {
     const defaultMsg = 'Hi Santu Hardware, I want to enquire about a product.';
     const text = encodeURIComponent(message || defaultMsg);
     return `https://wa.me/919097441600?text=${text}`;
+  },
+
+  // Handwritten slip WhatsApp helper
+  getSlipWhatsAppUrl: () => {
+    const msg = encodeURIComponent("Hi Santu Hardware, I am sending a photo of my painter/contractor's requirement slip. Please calculate the total price and check stock availability.");
+    return `https://wa.me/919097441600?text=${msg}`;
   },
   
   // Directions action helper (opens WhatsApp asking for store location if address is pending)
