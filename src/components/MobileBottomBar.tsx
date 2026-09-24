@@ -6,7 +6,7 @@ export const MobileBottomBar: React.FC = () => {
   return (
     <div
       id="mobile-bottom-bar"
-      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-t border-slate-200/90 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] px-3 py-2 pb-safe"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-t border-slate-200/90 shadow-[0_-10px_30px_rgba(15,23,42,0.1)] px-3 py-2 pb-safe"
       role="navigation"
       aria-label="Mobile Quick Actions"
     >
@@ -16,7 +16,7 @@ export const MobileBottomBar: React.FC = () => {
         <a
           href={STORE_CONFIG.phoneTel}
           id="mobile-bar-call"
-          className="touch-target flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-slate-900 active:bg-slate-800 text-white font-extrabold text-[11px] tracking-tight transition-transform active:scale-95 shadow-sm"
+          className="touch-target flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-slate-900 active:bg-slate-800 text-white font-extrabold text-[11px] tracking-tight transition-transform active:scale-95 shadow-sm border border-slate-700"
           aria-label="Call 9097441600"
         >
           <Phone className="w-4 h-4 text-emerald-400 mb-0.5" />
@@ -42,10 +42,10 @@ export const MobileBottomBar: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
           id="mobile-bar-directions"
-          className="touch-target flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-slate-100 active:bg-slate-200 text-slate-800 font-extrabold text-[11px] tracking-tight transition-transform active:scale-95 border border-slate-200/80"
+          className="touch-target flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-slate-100 active:bg-slate-200 text-slate-800 font-extrabold text-[11px] tracking-tight transition-transform active:scale-95 border border-slate-300"
           aria-label="Get Directions / Store Location"
         >
-          <MapPin className="w-4 h-4 text-brand-600 mb-0.5" />
+          <MapPin className="w-4 h-4 text-brand-700 mb-0.5" />
           <span>DIRECTIONS</span>
         </a>
 

@@ -14,7 +14,6 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -38,13 +37,14 @@ export const Navbar: React.FC = () => {
 
   const mobileNavLinks = [
     { label: 'Home', href: '#home' },
-    { label: 'Paints', href: '#special-deals' },
+    { label: 'Special Deals', href: '#special-deals' },
+    { label: 'Paints', href: '#categories' },
     { label: 'Hardware', href: '#categories' },
     { label: 'Plumbing', href: '#categories' },
     { label: 'Electrical', href: '#categories' },
-    { label: 'Brands', href: '#brands' },
-    { label: 'Delivery', href: '#delivery' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Colour Swatches', href: '#paint-colours' },
+    { label: '30 KM Delivery', href: '#delivery' },
+    { label: 'Contact Store', href: '#contact' },
   ];
 
   const handleLinkClick = (href: string) => {
@@ -60,8 +60,8 @@ export const Navbar: React.FC = () => {
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-soft-sm border-b border-slate-200/80 py-2.5'
-            : 'bg-white border-b border-slate-100 py-3.5'
+            ? 'glass-header shadow-[0_4px_20px_rgba(0,0,0,0.06)] py-2.5'
+            : 'bg-white border-b border-slate-200/80 py-3.5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,29 +69,29 @@ export const Navbar: React.FC = () => {
             {/* Brand Logo & Name */}
             <a
               href="#home"
-              className="flex items-center gap-2.5 group focus:outline-none"
+              className="flex items-center gap-3 group focus:outline-none"
               aria-label="Santu Hardware Home"
             >
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-brand-600 via-brand-700 to-slate-900 flex items-center justify-center text-white shadow-sm shadow-brand-500/30 group-hover:scale-105 transition-transform duration-200">
-                <span className="font-extrabold text-lg tracking-tight font-display">S</span>
+              <div className="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-white shadow-sm group-hover:bg-brand-700 transition-colors">
+                <span className="font-extrabold text-xl tracking-tight font-display text-white">S</span>
               </div>
               <div className="flex flex-col">
-                <span className="font-display font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-none group-hover:text-brand-600 transition-colors">
+                <span className="font-display font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-none group-hover:text-brand-700 transition-colors">
                   {STORE_CONFIG.businessName}
                 </span>
-                <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-slate-500 mt-0.5">
+                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 mt-1">
                   Paints • Hardware • Electrical
                 </span>
               </div>
             </a>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Main Navigation">
+            <nav className="hidden lg:flex items-center gap-1" aria-label="Main Navigation">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="px-3 py-1.5 text-sm font-semibold text-slate-600 hover:text-brand-600 rounded-lg hover:bg-slate-50 transition-colors"
+                  className="px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
                 >
                   {link.label}
                 </a>
@@ -103,10 +103,10 @@ export const Navbar: React.FC = () => {
               <a
                 href={STORE_CONFIG.phoneTel}
                 id="header-call-btn"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all duration-150 active:scale-95"
+                className="btn-tactile-dark inline-flex items-center gap-1.5 px-4 py-2 text-xs rounded-xl"
                 title="Call 9097441600"
               >
-                <Phone className="w-3.5 h-3.5 text-brand-600" />
+                <Phone className="w-3.5 h-3.5 text-emerald-400" />
                 <span>Call Now</span>
               </a>
 
@@ -115,7 +115,7 @@ export const Navbar: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 id="header-whatsapp-btn"
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs sm:text-sm font-bold text-white bg-whatsapp hover:bg-emerald-600 rounded-xl shadow-sm hover:shadow-whatsapp transition-all duration-150 active:scale-95"
+                className="btn-tactile-whatsapp inline-flex items-center gap-1.5 px-4 py-2 text-xs rounded-xl"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
                 <span>WhatsApp</span>
@@ -128,7 +128,7 @@ export const Navbar: React.FC = () => {
                 type="button"
                 id="mobile-menu-toggle"
                 onClick={() => setIsOpen(!isOpen)}
-                className="touch-target inline-flex items-center justify-center p-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="touch-target inline-flex items-center justify-center p-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-900"
                 aria-expanded={isOpen}
                 aria-label="Toggle navigation menu"
               >
@@ -144,7 +144,7 @@ export const Navbar: React.FC = () => {
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true">
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"
+            className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm transition-opacity"
             onClick={() => setIsOpen(false)}
           />
 
@@ -152,8 +152,8 @@ export const Navbar: React.FC = () => {
           <div className="fixed inset-y-0 right-0 max-w-xs w-full bg-white shadow-2xl z-50 flex flex-col justify-between overflow-y-auto">
             <div>
               <div className="p-4 flex items-center justify-between border-b border-slate-100">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold font-display">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center text-white font-black font-display text-sm">
                     S
                   </div>
                   <span className="font-display font-extrabold text-base text-slate-900">
@@ -171,7 +171,7 @@ export const Navbar: React.FC = () => {
               </div>
 
               {/* Delivery Highlight Badge */}
-              <div className="mx-4 mt-3 p-3 bg-emerald-50 rounded-xl border border-emerald-200/60 flex items-center gap-2.5">
+              <div className="mx-4 mt-3 p-3 bg-emerald-50 rounded-xl border border-emerald-200 flex items-center gap-2.5">
                 <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
                 <span className="text-xs font-bold text-emerald-800">
                   {STORE_CONFIG.deliveryHighlight}
@@ -184,20 +184,20 @@ export const Navbar: React.FC = () => {
                   <button
                     key={link.label}
                     onClick={() => handleLinkClick(link.href)}
-                    className="w-full text-left px-3.5 py-3 text-base font-semibold text-slate-700 hover:text-brand-600 hover:bg-brand-50/60 rounded-xl transition-colors flex items-center justify-between"
+                    className="w-full text-left px-3.5 py-3 text-sm font-bold text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-colors flex items-center justify-between"
                   >
                     <span>{link.label}</span>
-                    <span className="text-slate-300 text-sm">→</span>
+                    <span className="text-slate-400 text-xs">→</span>
                   </button>
                 ))}
               </nav>
             </div>
 
             {/* Bottom Actions inside Drawer */}
-            <div className="p-4 border-t border-slate-100 bg-slate-50/80 space-y-2.5 pb-safe">
+            <div className="p-4 border-t border-slate-100 bg-slate-50 space-y-2.5 pb-safe">
               <a
                 href={STORE_CONFIG.phoneTel}
-                className="w-full py-3 px-4 rounded-xl bg-slate-900 text-white font-bold text-center flex items-center justify-center gap-2 hover:bg-slate-800 active:scale-[0.99] transition-all"
+                className="w-full py-3 px-4 rounded-xl bg-slate-900 text-white font-bold text-center flex items-center justify-center gap-2 shadow-sm"
               >
                 <Phone className="w-4 h-4 text-emerald-400" />
                 <span>Call {STORE_CONFIG.phoneShort}</span>
@@ -207,7 +207,7 @@ export const Navbar: React.FC = () => {
                 href={STORE_CONFIG.getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-xl bg-whatsapp text-white font-bold text-center flex items-center justify-center gap-2 hover:bg-emerald-600 active:scale-[0.99] transition-all shadow-sm"
+                className="w-full py-3 px-4 rounded-xl bg-whatsapp text-white font-bold text-center flex items-center justify-center gap-2 shadow-sm"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>Chat on WhatsApp</span>
