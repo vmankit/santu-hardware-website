@@ -24,9 +24,7 @@ export const Footer: React.FC = () => {
           {/* Col 1: App Badges & Tagline */}
           <div className="space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="size-10 rounded-xl bg-black text-[#F8C200] flex items-center justify-center font-extrabold text-lg border border-black shadow-xs">
-                SH
-              </div>
+              <img src="/images/logo-mark.png" alt="Santu Hardware" className="h-10 w-auto shrink-0" width="52" height="40" />
               <span className="font-extrabold text-2xl tracking-tight text-gray-950">
                 Santu <span className="text-[#059669]">Hardware</span>
               </span>

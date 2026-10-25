@@ -137,9 +137,7 @@ export const Header: React.FC = () => {
             </button>
 
             <a href="/" className="flex items-center gap-2.5 shrink-0">
-              <div className="size-10 md:size-11 rounded-xl bg-[#F8C200] text-gray-950 flex items-center justify-center font-extrabold text-base md:text-lg shadow-xs border border-amber-300 tracking-tight">
-                SH
-              </div>
+              <img src="/images/logo-mark.png" alt="Santu Hardware" className="h-10 md:h-11 w-auto shrink-0" width="57" height="44" />
               <div>
                 <span className="font-extrabold text-lg md:text-xl tracking-tight text-gray-900 block leading-none">
                   Santu <span className="text-[#059669]">Hardware</span>
@@ -342,9 +340,7 @@ export const Header: React.FC = () => {
             {/* Header */}
             <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-gray-50">
               <div className="flex items-center gap-2">
-                <div className="size-8 rounded-lg bg-[#F8C200] text-gray-950 flex items-center justify-center font-extrabold text-sm border border-amber-300">
-                  SH
-                </div>
+                <img src="/images/logo-mark.png" alt="" className="h-8 w-auto shrink-0" width="42" height="32" />
                 <span className="font-extrabold text-base">Santu Hardware Menu</span>
               </div>
               <button
