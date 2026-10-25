@@ -91,6 +91,27 @@ export const CartDrawer: React.FC = () => {
     ];
     const text = lines.join('\n');
 
+    // Log the order for the shop owner via Netlify Forms (email + dashboard).
+    // No-ops silently on hosts without Netlify Forms; never blocks the order.
+    const itemsSummary = cart
+      .map((item) => `${item.quantity} × ${item.product.title} (₹${item.quantity * item.unitPrice})`)
+      .join('; ');
+    const formData = new URLSearchParams({
+      'form-name': 'orders',
+      name: name.trim(),
+      phone: `+91 ${phone}`,
+      address: address.trim(),
+      pincode: selectedPincode,
+      order_ref: orderId,
+      total: `₹${grandTotal}`,
+      items: itemsSummary,
+    });
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString(),
+    }).catch(() => {});
+
     window.open(`https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
 
     saveCustomer({ name: name.trim(), phone });

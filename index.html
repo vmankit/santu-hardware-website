@@ -61,6 +61,19 @@
     </script>
   </head>
   <body class="bg-white text-gray-900 antialiased selection:bg-[#F8C200] selection:text-black">
+    <!-- Netlify Forms: hidden form so Netlify registers "orders" at build time.
+         The cart posts here on every order; the shop owner gets each submission
+         by email and in the Netlify dashboard. No-ops on non-Netlify hosts. -->
+    <form name="orders" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="tel" name="phone" />
+      <input type="text" name="address" />
+      <input type="text" name="pincode" />
+      <input type="text" name="order_ref" />
+      <input type="text" name="total" />
+      <textarea name="items"></textarea>
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
