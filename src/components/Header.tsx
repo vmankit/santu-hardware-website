@@ -9,7 +9,10 @@ import {
   X, 
   Calculator, 
   PhoneCall,
-  CheckCircle2
+  CheckCircle2,
+  Truck,
+  Navigation,
+  Wallet as WalletIcon
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { STORE_CONFIG, CATEGORIES } from '../data/storeData';
@@ -19,7 +22,9 @@ export const Header: React.FC = () => {
     totalItems, 
     openCart, 
     selectedPincode, 
-    deliveryTime, 
+    isServiceable,
+    customer,
+    walletBalance,
     openPincodeModal, 
     openWalletModal, 
     openLoginModal, 
@@ -115,8 +120,17 @@ export const Header: React.FC = () => {
               <span className="md:hidden font-mono">{STORE_CONFIG.phone}</span>
             </a>
             <span className="text-gray-600 hidden md:inline">|</span>
+            <a
+              href={STORE_CONFIG.directionsUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="hidden md:flex items-center gap-1 hover:text-[#F8C200] transition-colors"
+            >
+              <Navigation className="w-3 h-3 text-[#F8C200]" /> Directions
+            </a>
+            <span className="text-gray-600 hidden md:inline">|</span>
             <span className="hidden md:flex items-center gap-1 text-[#10B981] font-semibold">
-              <CheckCircle2 className="w-3.5 h-3.5" /> 100% Genuine Materials
+              <CheckCircle2 className="w-3.5 h-3.5" /> 100% Genuine
             </span>
           </div>
         </div>
@@ -152,22 +166,22 @@ export const Header: React.FC = () => {
           {/* Delivery Location Selector Pill */}
           <button
             onClick={openPincodeModal}
-            className="flex items-center gap-2 md:gap-3 py-1 px-2 md:pl-4 md:pr-3 rounded-xl border border-gray-200 hover:border-gray-400 bg-gray-50/50 hover:bg-gray-50 transition-all text-left shrink-0"
+            aria-label={`Delivery pincode ${selectedPincode}, change`}
+            className="flex items-center gap-2 py-1.5 pl-2 pr-2.5 rounded-xl border border-gray-200 hover:border-gray-400 bg-white transition-colors text-left shrink-0"
           >
-            <div className="flex size-7 md:size-8 shrink-0 items-center justify-center rounded-lg bg-[#059669] text-white">
-              <div className="text-center text-[9px] md:text-[10px] font-extrabold leading-tight">
-                <div>{deliveryTime.split(' ')[0]}</div>
-                <div>{deliveryTime.split(' ')[1] || 'Mins'}</div>
-              </div>
-            </div>
-            <div className="min-w-0">
-              <p className="text-[10px] font-medium text-gray-500 leading-none">Deliver To</p>
-              <div className="flex items-center gap-1 mt-0.5">
-                <MapPin className="w-3 h-3 text-[#059669] shrink-0" />
-                <span className="font-bold text-xs md:text-sm text-gray-900 font-mono">{selectedPincode}</span>
+            <span className={`flex size-8 shrink-0 items-center justify-center rounded-lg ${isServiceable ? 'bg-emerald-50 text-[#059669]' : 'bg-amber-50 text-amber-700'}`}>
+              <Truck className="w-4 h-4" />
+            </span>
+            <span className="min-w-0 leading-tight">
+              <span className="flex items-center gap-1">
+                <MapPin className="w-3 h-3 text-gray-400 shrink-0" />
+                <span className="font-bold text-sm text-gray-900 font-mono">{selectedPincode}</span>
                 <ChevronDown className="w-3 h-3 text-gray-400" />
-              </div>
-            </div>
+              </span>
+              <span className={`block text-[11px] font-semibold ${isServiceable ? 'text-[#059669]' : 'text-amber-700'}`}>
+                {isServiceable ? 'Same-day delivery' : 'Check on WhatsApp'}
+              </span>
+            </span>
           </button>
 
           {/* Animated Search Bar */}
@@ -201,14 +215,10 @@ export const Header: React.FC = () => {
                 className="relative flex h-9 items-center overflow-hidden rounded-full bg-[linear-gradient(250deg,#095e3d,#06331f)] p-0.5 shadow-sm hover:shadow transition-transform active:scale-95"
               >
                 <div className="relative flex items-center gap-1.5 rounded-full border border-[#388468] py-1 px-3">
-                  <img
-                    src={STORE_CONFIG.walletIconUrl}
-                    alt="Wallet"
-                    className="w-5 h-4 object-contain animate-coin"
-                  />
+                  <WalletIcon className="w-4 h-4 text-[#F8C200]" />
                   <span className="text-xs font-bold leading-none text-white tracking-wide">Wallet</span>
-                  <span className="hidden lg:inline text-[10px] bg-[#F8C200] text-black font-extrabold px-1.5 py-0.2 rounded-full ml-0.5">
-                    1% Cash
+                  <span className="hidden lg:inline text-[10px] bg-[#F8C200] text-black font-extrabold px-1.5 py-0.5 rounded-full ml-0.5 font-mono">
+                    ₹{walletBalance}
                   </span>
                 </div>
               </button>
@@ -239,7 +249,9 @@ export const Header: React.FC = () => {
               className="flex items-center gap-1.5 text-gray-700 hover:text-black font-semibold text-sm px-2 py-1.5 rounded-lg hover:bg-gray-100 transition-colors"
             >
               <User className="w-5 h-5 text-gray-700" />
-              <span className="hidden sm:inline">Login</span>
+              <span className="hidden sm:inline max-w-[7rem] truncate">
+                {customer ? `Hi, ${customer.name.split(' ')[0]}` : 'Login'}
+              </span>
             </button>
 
             {/* Cart Trigger */}

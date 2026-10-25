@@ -8,7 +8,26 @@ export interface CartItem {
   unitPrice: number;
 }
 
+export interface Customer {
+  name: string;
+  phone: string;
+}
+
+export interface PlacedOrder {
+  id: string;
+  date: string;
+  total: number;
+  cashback: number;
+  itemCount: number;
+}
+
 interface CartContextType {
+  customer: Customer | null;
+  saveCustomer: (customer: Customer) => void;
+  logout: () => void;
+  orders: PlacedOrder[];
+  walletBalance: number;
+  recordOrder: (order: PlacedOrder) => void;
   cart: CartItem[];
   addToCart: (product: Product, quantity?: number) => void;
   removeFromCart: (productId: string) => void;
@@ -50,6 +69,12 @@ interface CartContextType {
 }
 
 const defaultContextValue: CartContextType = {
+  customer: null,
+  saveCustomer: () => {},
+  logout: () => {},
+  orders: [],
+  walletBalance: 0,
+  recordOrder: () => {},
   cart: [],
   isCartOpen: false,
   selectedPincode: STORE_CONFIG.defaultPincode,
@@ -92,6 +117,21 @@ const defaultContextValue: CartContextType = {
 
 const CartContext = createContext<CartContextType>(defaultContextValue);
 
+function readJSON<T>(key: string, fallback: T): T {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? (JSON.parse(raw) as T) : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function writeJSON(key: string, value: unknown) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch {}
+}
+
 // Calculate tiered price based on quantity
 function getEffectiveUnitPrice(product: Product, quantity: number): number {
   if (!product.tiers || product.tiers.length === 0) {
@@ -125,8 +165,39 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return STORE_CONFIG.defaultPincode;
     }
   });
-  const [deliveryTime, setDeliveryTime] = useState(STORE_CONFIG.expressTime);
-  const [isServiceable, setIsServiceable] = useState(true);
+  const [deliveryTime, setDeliveryTime] = useState(() =>
+    SERVICEABLE_PINCODES.includes(selectedPincode) ? STORE_CONFIG.expressTime : 'Confirm on WhatsApp'
+  );
+  const [isServiceable, setIsServiceable] = useState(() => SERVICEABLE_PINCODES.includes(selectedPincode));
+
+  const [customer, setCustomer] = useState<Customer | null>(() => readJSON('santuhardware_customer', null));
+  const [orders, setOrders] = useState<PlacedOrder[]>(() => readJSON('santuhardware_orders', []));
+
+  const saveCustomer = (c: Customer) => {
+    setCustomer(c);
+    writeJSON('santuhardware_customer', c);
+  };
+
+  const logout = () => {
+    setCustomer(null);
+    try {
+      localStorage.removeItem('santuhardware_customer');
+    } catch {}
+  };
+
+  const recordOrder = (order: PlacedOrder) => {
+    setOrders((prev) => {
+      const next = [order, ...prev];
+      writeJSON('santuhardware_orders', next);
+      return next;
+    });
+  };
+
+  const walletBalance = orders.reduce((acc, o) => acc + o.cashback, 0);
+
+  const openCalculator = () => {
+    document.getElementById('calculator-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   // Modals
   const [isPincodeModalOpen, setIsPincodeModalOpen] = useState(false);
@@ -221,6 +292,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   return (
     <CartContext.Provider
       value={{
+        customer,
+        saveCustomer,
+        logout,
+        orders,
+        walletBalance,
+        recordOrder,
         cart,
         addToCart,
         removeFromCart,
@@ -250,7 +327,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         openLoginModal: () => setIsLoginModalOpen(true),
         closeLoginModal: () => setIsLoginModalOpen(false),
         isCalculatorOpen,
-        openCalculator: () => setIsCalculatorOpen(true),
+        openCalculator,
         closeCalculator: () => setIsCalculatorOpen(false),
         selectedVideo,
         openVideoModal: (v) => setSelectedVideo(v),
