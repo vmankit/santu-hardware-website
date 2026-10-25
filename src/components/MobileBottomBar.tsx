@@ -1,53 +1,83 @@
 import React from 'react';
-import { Phone, MessageSquare, MapPin } from 'lucide-react';
-import { STORE_CONFIG } from '../data/storeConfig';
+import { Home, Grid, Calculator, ShoppingBag, MessageCircle } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+import { STORE_CONFIG } from '../data/storeData';
 
 export const MobileBottomBar: React.FC = () => {
+  const { totalItems, openCart, openCalculator, setActiveCategory } = useCart();
+
+  const scrollToCategories = () => {
+    setActiveCategory(null);
+    const el = document.getElementById('categories-section');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleWhatsApp = () => {
+    const msg = `Hi Santu Hardware! I need some items delivered. Can you share availability and prices?`;
+    window.open(`https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+  };
+
   return (
-    <div
-      id="mobile-bottom-bar"
-      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-t border-slate-200/90 shadow-[0_-10px_30px_rgba(15,23,42,0.1)] px-3 py-2 pb-safe"
-      role="navigation"
-      aria-label="Mobile Quick Actions"
-    >
-      <div className="grid grid-cols-3 gap-2 max-w-md mx-auto">
+    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg px-2 py-1.5 safe-area-pb">
+      <div className="grid grid-cols-5 items-center justify-around text-center">
         
-        {/* Call Button */}
+        {/* Home */}
         <a
-          href={STORE_CONFIG.phoneTel}
-          id="mobile-bar-call"
-          className="touch-target flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-terracotta-600 active:bg-terracotta-700 text-white font-extrabold text-[11px] tracking-tight transition-transform active:scale-95 shadow-terracotta border border-terracotta-500"
-          aria-label="Call 9097441600"
+          href="#"
+          onClick={() => {
+            setActiveCategory(null);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          className="flex flex-col items-center gap-0.5 text-gray-700 hover:text-black py-1"
         >
-          <Phone className="w-4 h-4 text-white mb-0.5" />
-          <span>CALL</span>
+          <Home className="w-5 h-5" />
+          <span className="text-[10px] font-bold">Home</span>
         </a>
 
-        {/* WhatsApp Button */}
-        <a
-          href={STORE_CONFIG.getWhatsAppUrl()}
-          target="_blank"
-          rel="noopener noreferrer"
-          id="mobile-bar-whatsapp"
-          className="touch-target flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-whatsapp active:bg-emerald-600 text-white font-extrabold text-[11px] tracking-tight transition-transform active:scale-95 shadow-whatsapp"
-          aria-label="Chat on WhatsApp"
+        {/* Categories */}
+        <button
+          onClick={scrollToCategories}
+          className="flex flex-col items-center gap-0.5 text-gray-700 hover:text-black py-1"
         >
-          <MessageSquare className="w-4 h-4 mb-0.5" />
-          <span>WHATSAPP</span>
-        </a>
+          <Grid className="w-5 h-5" />
+          <span className="text-[10px] font-bold">Categories</span>
+        </button>
 
-        {/* Directions Button */}
-        <a
-          href={STORE_CONFIG.getDirectionsUrl()}
-          target="_blank"
-          rel="noopener noreferrer"
-          id="mobile-bar-directions"
-          className="touch-target flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-slate-100 active:bg-slate-200 text-slate-800 font-extrabold text-[11px] tracking-tight transition-transform active:scale-95 border border-slate-300"
-          aria-label="Get Directions / Store Location"
+        {/* Calculator */}
+        <button
+          onClick={openCalculator}
+          className="flex flex-col items-center gap-0.5 text-[#059669] hover:text-[#047857] py-1"
         >
-          <MapPin className="w-4 h-4 text-brand-700 mb-0.5" />
-          <span>DIRECTIONS</span>
-        </a>
+          <div className="size-6 rounded-lg bg-emerald-50 flex items-center justify-center">
+            <Calculator className="w-4 h-4" />
+          </div>
+          <span className="text-[10px] font-extrabold">Calculator</span>
+        </button>
+
+        {/* Cart */}
+        <button
+          onClick={openCart}
+          className="relative flex flex-col items-center gap-0.5 text-gray-700 hover:text-black py-1"
+        >
+          <div className="relative">
+            <ShoppingBag className="w-5 h-5" />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-2.5 bg-[#F8C200] text-black text-[9px] font-extrabold size-4 rounded-full flex items-center justify-center font-mono">
+                {totalItems}
+              </span>
+            )}
+          </div>
+          <span className="text-[10px] font-bold">Cart</span>
+        </button>
+
+        {/* WhatsApp */}
+        <button
+          onClick={handleWhatsApp}
+          className="flex flex-col items-center gap-0.5 text-[#25D366] hover:text-[#128C7E] py-1"
+        >
+          <MessageCircle className="w-5 h-5 fill-current" />
+          <span className="text-[10px] font-bold">WhatsApp</span>
+        </button>
 
       </div>
     </div>

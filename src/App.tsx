@@ -1,50 +1,65 @@
 import React from 'react';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { HeroInfoStrip } from './components/HeroInfoStrip';
-import { SpecialDeals } from './components/SpecialDeals';
-import { ProductCategories } from './components/ProductCategories';
-import { BrandsSection } from './components/BrandsSection';
-import { PaintColorSection } from './components/PaintColorSection';
-import { FreeDeliverySection } from './components/FreeDeliverySection';
-import { WhySantuHardware } from './components/WhySantuHardware';
-import { HowToOrder } from './components/HowToOrder';
-import { CantFindItSection } from './components/CantFindItSection';
-import { ContactSection } from './components/ContactSection';
+import { CartProvider } from './context/CartContext';
+import { Header } from './components/Header';
+import { HeroBanner } from './components/HeroBanner';
+import { CategoryGrid } from './components/CategoryGrid';
+import { DealsOfTheWeek } from './components/DealsOfTheWeek';
+import { TrustAuthenticityBanner } from './components/TrustAuthenticityBanner';
+import { NewlyLaunched } from './components/NewlyLaunched';
+import { CatalogSection } from './components/CatalogSection';
+import { CuratedCollections } from './components/CuratedCollections';
+import { CalculatorSection } from './components/CalculatorSection';
+import { BrandPartnersSection } from './components/BrandPartnersSection';
 import { Footer } from './components/Footer';
-import { MobileBottomBar } from './components/MobileBottomBar';
+import { CartDrawer } from './components/CartDrawer';
+import { PincodeModal } from './components/PincodeModal';
+import { WalletModal } from './components/WalletModal';
+import { LoginModal } from './components/LoginModal';
+import { VideoPlayerModal } from './components/VideoPlayerModal';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+import { MobileBottomBar } from './components/MobileBottomBar';
+
+export const AppContent: React.FC = () => {
+  return (
+    <div className="min-h-screen bg-white flex flex-col antialiased text-gray-900 selection:bg-[#F8C200] selection:text-black">
+      {/* Sticky Header Navigation */}
+      <Header />
+
+      {/* Main Page Sections */}
+      <main className="flex-1 pb-16 lg:pb-0">
+        <HeroBanner />
+        <CategoryGrid />
+        <DealsOfTheWeek />
+        <TrustAuthenticityBanner />
+        <NewlyLaunched />
+        <CatalogSection />
+        <CuratedCollections />
+        <CalculatorSection />
+        <BrandPartnersSection />
+      </main>
+
+      {/* Yellow Brand Footer */}
+      <Footer />
+
+      {/* Modals & Overlays */}
+      <CartDrawer />
+      <PincodeModal />
+      <WalletModal />
+      <LoginModal />
+      <VideoPlayerModal />
+
+      {/* Floating Action Triggers */}
+      <FloatingWhatsApp />
+      <MobileBottomBar />
+    </div>
+  );
+};
 
 export const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col antialiased selection:bg-brand-500 selection:text-white">
-      {/* Sticky Header Navigation */}
-      <Navbar />
-
-      {/* Main Content Area with Bottom Padding for Mobile Action Bar */}
-      <main className="flex-1 pb-16 md:pb-0">
-        <Hero />
-        <HeroInfoStrip />
-        <SpecialDeals />
-        <ProductCategories />
-        <BrandsSection />
-        <PaintColorSection />
-        <FreeDeliverySection />
-        <WhySantuHardware />
-        <HowToOrder />
-        <CantFindItSection />
-        <ContactSection />
-      </main>
-
-      {/* Footer */}
-      <Footer />
-
-      {/* Floating WhatsApp Action Button */}
-      <FloatingWhatsApp />
-
-      {/* Mobile-Only Fixed Bottom Action Bar */}
-      <MobileBottomBar />
-    </div>
+    <CartProvider>
+      <AppContent />
+    </CartProvider>
   );
 };
 

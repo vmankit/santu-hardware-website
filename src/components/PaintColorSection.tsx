@@ -14,18 +14,18 @@ export const PaintColorSection: React.FC = () => {
   };
 
   return (
-    <section id="paint-colours" className="py-12 sm:py-16 bg-white border-b border-slate-200">
+    <section id="paint-colours" className="py-10 sm:py-12 bg-white border-t border-stoneWarm-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8">
-          <div className="inline-block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
-            Architectural Shade Studio
+        <div className="max-w-2xl mb-8">
+          <div className="inline-block text-xs font-semibold text-slate-500 mb-2">
+            Shade studio
           </div>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-2">
-            Find Your Perfect Colour
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight mb-2">
+            Find your colour
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 font-medium">
+          <p className="text-base text-slate-600 font-medium">
             Explore popular shade families for interior and exterior walls. Tap any swatch to preview the shade or ask for computerized mixing.
           </p>
         </div>
@@ -37,7 +37,7 @@ export const PaintColorSection: React.FC = () => {
               key={cat.name}
               type="button"
               onClick={() => handleCategoryChange(idx)}
-              className={`touch-target px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shrink-0 transition-all ${
+              className={`touch-target px-4 py-2 rounded-md text-[15px] font-semibold shrink-0 transition-all ${
                 activeCategoryIndex === idx
                   ? 'bg-slate-900 text-white shadow-sm ring-1 ring-slate-900'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
@@ -49,27 +49,27 @@ export const PaintColorSection: React.FC = () => {
         </div>
 
         {/* Authentic Color Deck Card */}
-        <div className="bg-slate-50 rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-7 mb-6">
+        <div className="bg-slate-50 rounded-lg border border-slate-200/90 shadow-sm p-5 sm:p-7 mb-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             
             {/* Left Column: Big Swatch Preview with Architectural Card Frame */}
             <div className="lg:col-span-5 flex flex-col">
               <div
-                className="w-full h-52 sm:h-60 rounded-2xl p-5 shadow-sm flex flex-col justify-between transition-colors duration-300 border border-black/5 relative overflow-hidden"
+                className="w-full h-52 sm:h-60 rounded-lg p-5 shadow-sm flex flex-col justify-between transition-colors duration-300 border border-black/5 relative overflow-hidden"
                 style={{ backgroundColor: selectedColor.hex }}
               >
                 <div>
-                  <span className="text-[11px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-md bg-white/95 text-slate-900 shadow-xs backdrop-blur-sm border border-slate-200/50">
+                  <span className="text-xs font-semibold px-3 py-1 rounded-md bg-white/95 text-slate-900 shadow-xs border border-slate-200/50">
                     {activeCategory.name}
                   </span>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-white/95 shadow-md flex items-center justify-between text-slate-900 border border-slate-200/60 backdrop-blur-sm">
+                <div className="p-3.5 rounded-md bg-white/95 shadow-md flex items-center justify-between text-slate-900 border border-slate-200/60">
                   <div>
-                    <div className="font-display font-black text-base sm:text-lg">
+                    <div className=" font-semibold text-base sm:text-lg">
                       {selectedColor.name}
                     </div>
-                    <div className="text-xs font-mono text-slate-500 font-bold">
+                    <div className="text-xs font-mono text-slate-500 font-semibold">
                       Code: {selectedColor.code}
                     </div>
                   </div>
@@ -88,7 +88,7 @@ export const PaintColorSection: React.FC = () => {
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-tactile-whatsapp touch-target w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold"
+                  className="btn-tactile-whatsapp touch-target w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-md text-[15px] font-semibold"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>Enquire {selectedColor.name} on WhatsApp</span>
@@ -99,7 +99,7 @@ export const PaintColorSection: React.FC = () => {
             {/* Right Column: Swatches Grid */}
             <div className="lg:col-span-7">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="font-display font-bold text-sm sm:text-base text-slate-900">
+                <h3 className=" font-semibold text-base text-slate-900">
                   Available {activeCategory.name} Shades
                 </h3>
                 <span className="text-xs text-slate-400 font-medium">
@@ -115,7 +115,7 @@ export const PaintColorSection: React.FC = () => {
                       key={color.code}
                       type="button"
                       onClick={() => setSelectedColor(color)}
-                      className={`text-left p-2.5 rounded-xl border transition-all cursor-pointer ${
+                      className={`text-left p-2.5 rounded-md border transition-all cursor-pointer ${
                         isSelected
                           ? 'border-slate-900 bg-white shadow-md ring-2 ring-slate-900 scale-[1.02]'
                           : 'border-slate-200 hover:border-slate-400 bg-white hover:shadow-xs'
@@ -131,10 +131,10 @@ export const PaintColorSection: React.FC = () => {
                           </div>
                         )}
                       </div>
-                      <div className="font-bold text-xs text-slate-900 truncate">
+                      <div className="font-semibold text-xs text-slate-900 truncate">
                         {color.name}
                       </div>
-                      <div className="text-[11px] font-mono text-slate-500 font-medium">
+                      <div className="text-xs font-mono text-slate-500 font-medium">
                         {color.code}
                       </div>
                     </button>
@@ -143,9 +143,9 @@ export const PaintColorSection: React.FC = () => {
               </div>
 
               {/* Consultation Callout */}
-              <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="p-4 rounded-md bg-white border border-slate-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
-                  <h4 className="font-display font-bold text-xs sm:text-sm text-slate-900">
+                  <h4 className=" font-semibold text-[15px] text-slate-900">
                     Need help calculating paint quantity?
                   </h4>
                   <p className="text-xs text-slate-500 font-normal">
@@ -156,7 +156,7 @@ export const PaintColorSection: React.FC = () => {
                   href={STORE_CONFIG.getWhatsAppUrl("Hi Santu Hardware, I need help choosing paint and colours.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-tactile-dark touch-target inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold shrink-0"
+                  className="btn-tactile-dark touch-target inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-md text-xs font-semibold shrink-0"
                 >
                   <MessageSquare className="w-3.5 h-3.5 text-whatsapp" />
                   <span>Talk to Us on WhatsApp</span>

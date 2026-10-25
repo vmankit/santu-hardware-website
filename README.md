@@ -1,95 +1,51 @@
-# Santu Hardware — Modern Retail Website
+# Santu Hardware — Paints, Hardware, Plumbing & Electrical (Free Delivery within 30 km)
 
-A production-quality, modern, mobile-first website for **SANTU HARDWARE**, a premier Paints, Hardware, Plumbing & Electrical store.
+A production-ready storefront for **Santu Hardware**, Ishauvpur, Saran, Bihar — genuine Asian Paints, JK Maxx and Birla Opus paints, plus hardware, plumbing and electrical supplies, with free delivery within 30 km. Contact: 7739802334 / 9097441600.
+
+Santu Hardware does not stock cement, plywood, CCTV equipment, inverters or Action Tesa products — the catalogue, categories and copy are scoped to what the shop actually sells.
 
 ---
 
 ## 🚀 Key Features
 
-- **Mobile-First High-Conversion UI**: Designed specifically for smartphone screens (320px, 360px, 375px, 390px, 412px, 430px) as well as tablets and desktops.
-- **5-Second Value Proposition**: Instant clarity upon opening — store categories, 30 KM free delivery highlight, featured brand deals, and direct Call/WhatsApp action buttons.
-- **Fixed Mobile Bottom Action Bar**: Sticky mobile action bar with one-touch **CALL**, **WHATSAPP**, and **DIRECTIONS** triggers.
-- **Special Paint Deals**: Prominent deal showcases for **JK Maxx Paints**, **Birla Opus**, and **Asian Paints** with exact pre-filled WhatsApp enquiry messages.
-- **Interactive Product Catalog**: Comprehensive categories (Paints, Hardware, Plumbing, Electrical, Tools, Home Improvement) with subcategory detail popups and quick inquiry triggers.
-- **Interactive Paint Colour Studio**: Realistic shade swatches across 6 families (Elegant Whites, Warm Neutrals, Modern Greys, Fresh Greens, Calm Blues, Bold Colours) with live wall finish simulation.
-- **Interactive 30 KM Delivery Checker**: Allows customers to type their locality/area and directly verify free delivery eligibility via WhatsApp.
-- **Centralized Configuration**: All store details, phone numbers, delivery radius, brands, categories, and address can be updated from a single file (`src/data/storeConfig.ts`).
-- **Honest & Trustworthy**: Zero fake reviews, zero fake countdowns, zero invented ratings, and configurable address display.
-- **SEO & Performance**: Optimized meta tags, OpenGraph, JSON-LD Schema.org LocalBusiness data, and lightning-fast bundle delivery.
+- **Free Delivery Bar**: Interactive delivery selector and pincode checker for the shop's confirmed 30 km service area, with a live header badge.
+- **Animated Search Bar**: Auto-rotating keyword placeholders (Asian Paints, wall putty, KEI wire, LED bulb, CPVC pipe, door lock, Fevicol) with instant catalogue search and filtering.
+- **Santu Cash & Wallet**: Wallet breakdown modal showing 1% cashback on every order, redeemable above ₹500.
+- **Category Tiles**: Paints, hardware, plumbing, electrical, sanitary/bath, power tools and related departments, with live filtering.
+- **Deals Of The Week** and **Newly Launched** rails with bulk-tier pricing.
+- **Interactive Slide-over Cart Drawer**:
+  - Live free-delivery threshold tracker (free above ₹500)
+  - Santu Cash earnings calculation
+  - Quantity steppers, pay-on-delivery flow
+  - WhatsApp one-click order generation with an itemised breakdown
+- **Paint Quantity Calculator**: Estimate interior/exterior paint, primer and wall putty needed from built-up area, with a direct WhatsApp quote request naming Asian Paints, JK Maxx and Birla Opus.
+- **Direct Brand Partnerships Showcase**: Asian Paints, JK Maxx, Birla Opus, Pidilite (Fevicol), Hettich, Godrej, Astral, KEI Wires, Havells, Bosch, Dr. Fixit, Finolex.
+- **Footer**: Store address, both contact numbers, Google Maps directions link, newsletter sign-up, and policy links.
+
+No fabricated authenticity claims — product origin is "sourced direct from authorised brands," not a QR-verification system the shop doesn't have.
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Framework**: React 18 + Vite + TypeScript
-- **Styling**: Tailwind CSS with custom design tokens, modern typography (`Outfit` + `Plus Jakarta Sans`)
+- **Framework**: React 19 + Vite 8 + TypeScript
+- **Styling**: Tailwind CSS with custom Santu Hardware design tokens (`#F8C200` brand yellow, `#059669` express green, `#111827` ink dark)
+- **Typography**: `Poppins` geometric sans + `IBM Plex Mono` for prices
 - **Icons**: Lucide Icons
-- **Production Asset Pipeline**: Vite optimized bundler with gzip compression
+- **State Management**: React Context (`CartContext`) with LocalStorage persistence
 
----
-
-## 📁 Project Structure
-
-```
-site/
-├── public/
-│   └── images/
-│       ├── hero-store.jpg        # Store interior & showroom
-│       ├── paint-deals.jpg       # Paint buckets & swatches
-│       ├── hardware-tools.jpg    # Hardware, tools & fittings
-│       └── delivery-service.jpg  # Local 30 KM delivery vehicle
-├── src/
-│   ├── components/
-│   │   ├── Navbar.tsx            # Sticky header with mobile drawer
-│   │   ├── Hero.tsx              # Mobile-first hero section
-│   │   ├── HeroInfoStrip.tsx     # 3-card info highlight strip
-│   │   ├── SpecialDeals.tsx      # JK Maxx, Birla Opus, Asian Paints
-│   │   ├── ProductCategories.tsx # 2-column category grid & modal
-│   │   ├── BrandsSection.tsx     # Brand showcase with mobile swipe
-│   │   ├── PaintColorSection.tsx # Swatches & live wall preview
-│   │   ├── FreeDeliverySection.tsx # 30 KM delivery & area checker
-│   │   ├── WhySantuHardware.tsx  # 6 value proposition cards
-│   │   ├── HowToOrder.tsx        # 3-step order process
-│   │   ├── CantFindItSection.tsx # Unlisted product conversion section
-│   │   ├── ContactSection.tsx    # Direct contact & store information
-│   │   ├── Footer.tsx            # Clean modern footer
-│   │   ├── MobileBottomBar.tsx   # Fixed sticky bottom action bar
-│   │   └── FloatingWhatsApp.tsx  # Desktop floating WhatsApp button
-│   ├── data/
-│   │   └── storeConfig.ts        # CENTRAL CONFIGURATION FILE
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── index.css
-├── index.html                    # SEO Meta, OpenGraph & JSON-LD Schema
-├── tailwind.config.js
-└── package.json
-```
-
----
-
-## ⚙️ How to Update Store Information
-
-Open [`src/data/storeConfig.ts`](file:///c:/Users/rolln/Downloads/site/src/data/storeConfig.ts):
-
-- **Phone / WhatsApp**: Update `phoneRaw`, `phoneDisplay`, and `whatsappNumber`.
-- **Address**: Set `address: 'Your Exact Store Street Address, City, State Pincode'` to display the actual physical store location.
-- **Opening Hours**: Set `openingHours: 'Mon - Sat: 8:00 AM - 8:30 PM'`.
-- **Deals & Brands**: Add or customize offers and brand listings.
+All store details (phone numbers, address, delivery radius, categories, brands, products) live in `src/data/storeData.ts`.
 
 ---
 
 ## 🏃 Running Locally
 
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
+```
 
-# Build for production
+Build for production:
+```bash
 npm run build
-
-# Preview production build
-npm run preview
 ```

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, MessageSquare, Menu, X, ShieldCheck } from 'lucide-react';
+import { Phone, MessageSquare, Menu, X, ShieldCheck, Truck } from 'lucide-react';
 import { STORE_CONFIG } from '../data/storeConfig';
 
 export const Navbar: React.FC = () => {
@@ -26,26 +26,14 @@ export const Navbar: React.FC = () => {
   }, [isOpen]);
 
   const navLinks = [
-    { label: 'Home', href: '#home' },
     { label: 'Paints', href: '#special-deals' },
-    { label: 'Hardware', href: '#categories' },
-    { label: 'Categories', href: '#categories' },
-    { label: 'Brands', href: '#brands' },
+    { label: 'Departments', href: '#categories' },
+    { label: 'Colours', href: '#paint-colours' },
     { label: 'Delivery', href: '#delivery' },
     { label: 'Contact', href: '#contact' },
   ];
 
-  const mobileNavLinks = [
-    { label: 'Home', href: '#home' },
-    { label: 'Special Deals', href: '#special-deals' },
-    { label: 'Paints', href: '#categories' },
-    { label: 'Hardware', href: '#categories' },
-    { label: 'Plumbing', href: '#categories' },
-    { label: 'Electrical', href: '#categories' },
-    { label: 'Colour Swatches', href: '#paint-colours' },
-    { label: '30 KM Delivery', href: '#delivery' },
-    { label: 'Contact Store', href: '#contact' },
-  ];
+  const mobileNavLinks = navLinks;
 
   const handleLinkClick = (href: string) => {
     setIsOpen(false);
@@ -58,24 +46,22 @@ export const Navbar: React.FC = () => {
   return (
     <>
       {/* Top Announcement Bar - Mahakal Hardware inspired */}
-      <div className="bg-navy-900 border-b border-navy-800 text-white text-[11px] sm:text-xs py-2 px-4">
+      <div className="bg-orange-700 text-white text-xs sm:text-xs py-2 px-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 truncate">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-terracotta-600 text-white text-[10px] font-black shrink-0">
-              🚚
-            </span>
-            <span className="font-bold text-slate-200 truncate">
-              <span className="text-gold-400 font-extrabold uppercase">Free Home Delivery</span> Available Within 30 KM • Direct Store Rates
+            <Truck className="w-3.5 h-3.5 text-orange-100 shrink-0" />
+            <span className="text-orange-50 truncate">
+              Free home delivery within 30 km &middot; direct store rates
             </span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-4 shrink-0 font-semibold">
-            <span className="text-slate-400 text-[11px]">Special Deals on JK Maxx • Birla Opus • Asian Paints</span>
+          <div className="hidden sm:flex items-center gap-4 shrink-0">
+            <span className="text-orange-100">Deals on JK Maxx, Birla Opus &amp; Asian Paints</span>
             <a
               href={STORE_CONFIG.phoneTel}
-              className="font-mono text-terracotta-400 hover:text-white font-bold flex items-center gap-1 transition-colors"
+              className="font-mono text-white hover:text-orange-100 flex items-center gap-1 transition-colors"
             >
-              <Phone className="w-3 h-3 text-emerald-400" />
+              <Phone className="w-3 h-3" />
               <span>{STORE_CONFIG.phoneShort}</span>
             </a>
           </div>
@@ -83,7 +69,7 @@ export const Navbar: React.FC = () => {
       </div>
 
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
+        className={`sticky top-0 z-40 w-full transition-colors ${
           isScrolled
             ? 'glass-header shadow-[0_4px_20px_rgba(0,0,0,0.06)] py-2.5'
             : 'bg-white border-b border-stoneWarm-200 py-3 sm:py-3.5'
@@ -97,20 +83,19 @@ export const Navbar: React.FC = () => {
               className="flex items-center gap-3 group focus:outline-none"
               aria-label="Santu Hardware Home"
             >
-              <div className="w-10 h-10 rounded-xl bg-terracotta-600 border border-terracotta-700 flex items-center justify-center text-white shadow-sm group-hover:bg-terracotta-700 transition-colors">
-                <span className="font-extrabold text-xl tracking-tight font-display text-white">S</span>
-              </div>
+              <img
+                src={STORE_CONFIG.images.logoMark}
+                alt=""
+                className="h-10 w-auto shrink-0"
+                width="52"
+                height="40"
+              />
               <div className="flex flex-col">
-                <div className="flex items-center gap-2">
-                  <span className="font-display font-black text-slate-900 text-lg sm:text-xl tracking-tight leading-none group-hover:text-terracotta-600 transition-colors">
-                    {STORE_CONFIG.businessName}
-                  </span>
-                  <span className="hidden sm:inline-block text-[9px] font-black uppercase px-1.5 py-0.5 rounded bg-terracotta-50 text-terracotta-700 border border-terracotta-200">
-                    Retail Store
-                  </span>
-                </div>
-                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 mt-1">
-                  Paints • Hardware • Plumbing • Electrical
+                <span className=" font-semibold text-slate-900 text-lg sm:text-xl leading-none whitespace-nowrap group-hover:text-orange-600 transition-colors">
+                  {STORE_CONFIG.businessName}
+                </span>
+                <span className="hidden sm:block text-xs text-slate-500 mt-1 whitespace-nowrap">
+                  Paints &middot; Hardware &middot; Plumbing &middot; Electrical
                 </span>
               </div>
             </a>
@@ -121,7 +106,7 @@ export const Navbar: React.FC = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-slate-600 hover:text-terracotta-600 hover:bg-terracotta-50 rounded-lg transition-colors"
+                  className="px-3 py-1.5 text-sm font-medium text-slate-700 whitespace-nowrap hover:text-orange-700 rounded-md transition-colors"
                 >
                   {link.label}
                 </a>
@@ -133,8 +118,8 @@ export const Navbar: React.FC = () => {
               <a
                 href={STORE_CONFIG.phoneTel}
                 id="header-call-btn"
-                className="btn-tactile-terracotta inline-flex items-center gap-1.5 px-4 py-2 text-xs rounded-xl"
-                title="Call 9097441600"
+                className="btn-tactile-brand inline-flex items-center gap-1.5 px-4 py-2 text-xs rounded-md"
+                title="Call 7739802334"
               >
                 <Phone className="w-3.5 h-3.5" />
                 <span>Call {STORE_CONFIG.phoneShort}</span>
@@ -145,7 +130,7 @@ export const Navbar: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 id="header-whatsapp-btn"
-                className="btn-tactile-whatsapp inline-flex items-center gap-1.5 px-4 py-2 text-xs rounded-xl"
+                className="btn-tactile-whatsapp inline-flex items-center gap-1.5 px-4 py-2 text-xs rounded-md"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
                 <span>WhatsApp</span>
@@ -156,7 +141,7 @@ export const Navbar: React.FC = () => {
             <div className="flex lg:hidden items-center gap-2">
               <a
                 href={STORE_CONFIG.phoneTel}
-                className="btn-tactile-terracotta sm:hidden inline-flex items-center justify-center p-2 rounded-xl text-white"
+                className="btn-tactile-brand sm:hidden inline-flex items-center justify-center p-2 rounded-md text-white"
                 aria-label="Call Store"
               >
                 <Phone className="w-4 h-4" />
@@ -166,7 +151,7 @@ export const Navbar: React.FC = () => {
                 type="button"
                 id="mobile-menu-toggle"
                 onClick={() => setIsOpen(!isOpen)}
-                className="touch-target inline-flex items-center justify-center p-2 rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-terracotta-600"
+                className="touch-target inline-flex items-center justify-center p-2 rounded-md text-slate-700 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-orange-600"
                 aria-expanded={isOpen}
                 aria-label="Toggle navigation menu"
               >
@@ -182,7 +167,7 @@ export const Navbar: React.FC = () => {
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true">
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm transition-opacity"
+            className="fixed inset-0 bg-slate-950/60 transition-opacity"
             onClick={() => setIsOpen(false)}
           />
 
@@ -191,10 +176,14 @@ export const Navbar: React.FC = () => {
             <div>
               <div className="p-4 flex items-center justify-between border-b border-slate-100">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center text-white font-black font-display text-sm">
-                    S
-                  </div>
-                  <span className="font-display font-extrabold text-base text-slate-900">
+                  <img
+                    src={STORE_CONFIG.images.logoMark}
+                    alt=""
+                    className="h-8 w-auto shrink-0"
+                    width="42"
+                    height="32"
+                  />
+                  <span className=" font-semibold text-base text-slate-900">
                     {STORE_CONFIG.businessName}
                   </span>
                 </div>
@@ -209,9 +198,9 @@ export const Navbar: React.FC = () => {
               </div>
 
               {/* Delivery Highlight Badge */}
-              <div className="mx-4 mt-3 p-3 bg-emerald-50 rounded-xl border border-emerald-200 flex items-center gap-2.5">
+              <div className="mx-4 mt-3 p-3 bg-emerald-50 rounded-md border border-emerald-200 flex items-center gap-2.5">
                 <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
-                <span className="text-xs font-bold text-emerald-800">
+                <span className="text-xs font-semibold text-emerald-800">
                   {STORE_CONFIG.deliveryHighlight}
                 </span>
               </div>
@@ -222,7 +211,7 @@ export const Navbar: React.FC = () => {
                   <button
                     key={link.label}
                     onClick={() => handleLinkClick(link.href)}
-                    className="w-full text-left px-3.5 py-3 text-sm font-bold text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-colors flex items-center justify-between"
+                    className="w-full text-left px-3.5 py-3 text-sm font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-md transition-colors flex items-center justify-between"
                   >
                     <span>{link.label}</span>
                     <span className="text-slate-400 text-xs">→</span>
@@ -235,7 +224,7 @@ export const Navbar: React.FC = () => {
             <div className="p-4 border-t border-slate-100 bg-slate-50 space-y-2.5 pb-safe">
               <a
                 href={STORE_CONFIG.phoneTel}
-                className="w-full py-3 px-4 rounded-xl bg-slate-900 text-white font-bold text-center flex items-center justify-center gap-2 shadow-sm"
+                className="w-full py-3 px-4 rounded-md bg-slate-900 text-white font-semibold text-center flex items-center justify-center gap-2 shadow-sm"
               >
                 <Phone className="w-4 h-4 text-emerald-400" />
                 <span>Call {STORE_CONFIG.phoneShort}</span>
@@ -245,7 +234,7 @@ export const Navbar: React.FC = () => {
                 href={STORE_CONFIG.getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-xl bg-whatsapp text-white font-bold text-center flex items-center justify-center gap-2 shadow-sm"
+                className="w-full py-3 px-4 rounded-md bg-whatsapp text-white font-semibold text-center flex items-center justify-center gap-2 shadow-sm"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>Chat on WhatsApp</span>

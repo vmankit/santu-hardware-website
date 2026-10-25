@@ -33,27 +33,37 @@ export interface ColorSwatch {
 }
 
 export const STORE_CONFIG = {
-  businessName: 'SANTU HARDWARE',
+  businessName: 'Santu Hardware',
   legalName: 'Santu Hardware',
-  tagline: 'Paint. Hardware. Everything You Need.',
-  mainSellingMessage: 'Everything for Paint & Hardware — Under One Roof',
+  tagline: 'Paint, hardware and plumbing under one roof',
+  mainSellingMessage: 'Paint, hardware, plumbing and electricals, all from one counter',
   supportingText: 'Premium paints, hardware, plumbing, electrical supplies and more — all available at Santu Hardware.',
-  featuredOfferText: 'SPECIAL DEALS ON JK MAXX • BIRLA OPUS • ASIAN PAINTS',
+  featuredOfferText: 'Special deals on JK Maxx, Birla Opus and Asian Paints',
   
-  // Contact details
-  phoneRaw: '9097441600',
-  phoneDisplay: '+91 9097441600',
-  phoneShort: '9097441600',
-  phoneTel: 'tel:+919097441600',
-  whatsappNumber: '919097441600',
+  // Contact details — primary number is the one used for WhatsApp and every CTA
+  phoneRaw: '7739802334',
+  phoneDisplay: '+91 7739802334',
+  phoneShort: '7739802334',
+  phoneTel: 'tel:+917739802334',
+  whatsappNumber: '917739802334',
+
+  // Both shop lines, shown wherever we list contact details
+  phoneNumbers: [
+    { raw: '7739802334', display: '+91 7739802334', tel: 'tel:+917739802334', label: 'Primary — call or WhatsApp' },
+    { raw: '9097441600', display: '+91 9097441600', tel: 'tel:+919097441600', label: 'Alternate line' },
+  ],
   
   // Delivery details
   deliveryRadius: '30 KM',
-  deliveryHighlight: 'FREE DELIVERY WITHIN 30 KM',
-  deliveryDescription: 'Order your paints, hardware and other products from Santu Hardware and get free delivery within our 30 KM service area.',
+  deliveryHighlight: 'Free delivery within 30 km',
+  deliveryDescription: 'Order your paints, hardware and other products from Santu Hardware and get free delivery within our 30 km service area.',
   
   // Images
   images: {
+    logoMark: '/images/logo-mark.png',
+    logoFull: '/images/logo-full.png',
+    logoLockup: '/images/logo-lockup.png',
+    logoLockupWhite: '/images/logo-lockup-white.png',
     heroStore: '/images/hero-clean.jpg',
     paintDeals: '/images/paint-deals.jpg',
     hardwareTools: '/images/hardware-tools.jpg',
@@ -61,48 +71,47 @@ export const STORE_CONFIG = {
   },
 
   // Address & Hours (Configurable without fake data)
-  address: null as string | null, // Displays 'Address coming soon' if null
-  addressDisplay: 'Address coming soon',
-  addressNote: 'Call or WhatsApp for store location & directions',
+  address: 'Chhapra–Mohammadpur Road, Ishauvpur, Man Pusauli, Bihar 841411' as string | null,
+  addressDisplay: 'Chhapra–Mohammadpur Road, Ishauvpur, Man Pusauli, Bihar 841411',
+  addressNote: 'On the Chhapra–Mohammadpur road. Tap for directions on Google Maps.',
   openingHours: null as string | null, // Displays 'Contact store for hours' if null
   
   // Quick pre-filled WhatsApp helper
   getWhatsAppUrl: (message?: string) => {
     const defaultMsg = 'Hi Santu Hardware, I want to enquire about a product.';
     const text = encodeURIComponent(message || defaultMsg);
-    return `https://wa.me/919097441600?text=${text}`;
+    return `https://wa.me/917739802334?text=${text}`;
   },
 
   // Handwritten slip WhatsApp helper
   getSlipWhatsAppUrl: () => {
     const msg = encodeURIComponent("Hi Santu Hardware, I am sending a photo of my painter/contractor's requirement slip. Please calculate the total price and check stock availability.");
-    return `https://wa.me/919097441600?text=${msg}`;
+    return `https://wa.me/917739802334?text=${msg}`;
   },
   
-  // Directions action helper (opens WhatsApp asking for store location if address is pending)
-  getDirectionsUrl: () => {
-    const msg = encodeURIComponent("Hi Santu Hardware, please share your store's exact location and directions.");
-    return `https://wa.me/919097441600?text=${msg}`;
-  },
+  // Google Business listing for the store
+  googleListingUrl: 'https://share.google/k4zckZLpWoskgXe2x',
+
+  getDirectionsUrl: () => 'https://share.google/k4zckZLpWoskgXe2x',
   
   // Top Hero Information Strip
   heroStrip: [
     {
       id: 'wide-range',
       icon: 'Palette',
-      title: 'Wide Range',
+      title: 'Wide range',
       subtitle: 'Paints, hardware & more',
     },
     {
       id: 'free-delivery',
       icon: 'Truck',
-      title: 'Free Delivery',
-      subtitle: 'Within 30 KM radius',
+      title: 'Free delivery',
+      subtitle: 'Within a 30 km radius',
     },
     {
       id: 'easy-ordering',
       icon: 'MessageSquare',
-      title: 'Easy Ordering',
+      title: 'Easy ordering',
       subtitle: 'Call or WhatsApp',
     },
   ],
@@ -111,7 +120,8 @@ export const STORE_CONFIG = {
   specialDeals: [
     {
       id: 'jk-maxx',
-      name: 'JK MAXX PAINTS',
+      name: 'JK Maxx Paints',
+      logo: '/images/brands/jk-maxx.png',
       badge: 'Special Deal',
       tagline: 'Special deals available',
       description: 'Engineered for smooth coverage, maximum durability, and vibrant wall finishes for homes and commercial spaces.',
@@ -122,7 +132,8 @@ export const STORE_CONFIG = {
     },
     {
       id: 'birla-opus',
-      name: 'BIRLA OPUS',
+      name: 'Birla Opus',
+      logo: '/images/brands/birla-opus.png',
       badge: 'Trending Brand',
       tagline: 'Explore interior and exterior paint solutions',
       description: 'Next-generation luxury emulsions, weather-shield exterior coatings, and high-performance primers.',
@@ -133,7 +144,8 @@ export const STORE_CONFIG = {
     },
     {
       id: 'asian-paints',
-      name: 'ASIAN PAINTS',
+      name: 'Asian Paints',
+      logo: '/images/brands/asian-paints.png',
       badge: 'Most Popular',
       tagline: 'Wide range of paint products available',
       description: 'Complete interior, exterior, enamel, waterproof and wood finish solutions trusted by millions.',
@@ -252,23 +264,36 @@ export const STORE_CONFIG = {
     {
       id: 'jk-maxx',
       name: 'JK Maxx Paints',
+      logo: '/images/brands/jk-maxx.png',
       category: 'Paints & Wall Finishes',
       description: 'Premium quality wall putty, primers & emulsion paints engineered for superior durability and high whiteness.',
-      tag: 'Special Deals Available',
+      tag: 'Special deals',
+      warranty: {
+        url: 'https://jkmaxxpaints.com/warranty-card/',
+        label: 'Warranty certificates',
+        note: 'Up to 12 years on select emulsions',
+      },
     },
     {
       id: 'birla-opus',
       name: 'Birla Opus',
+      logo: '/images/brands/birla-opus.png',
       category: 'Decorative & Protective Paints',
       description: 'Next-generation interior and exterior paint solutions with rich vibrancy and long-lasting weather shield.',
-      tag: 'Special Deals Available',
+      tag: 'Special deals',
+      warranty: {
+        url: 'https://www.birlaopus.com/warranty',
+        label: 'Register your warranty',
+        note: 'Keep your bill and empty drums handy',
+      },
     },
     {
       id: 'asian-paints',
       name: 'Asian Paints',
+      logo: '/images/brands/asian-paints.png',
       category: 'Complete Paint Ecosystem',
       description: 'India’s most recognized paint brand offering complete interior, exterior, waterproofing, and enamel solutions.',
-      tag: 'Wide Range Available',
+      tag: 'Wide range',
     },
   ],
 
@@ -334,32 +359,32 @@ export const STORE_CONFIG = {
   whyChooseUs: [
     {
       icon: 'Layers',
-      title: 'Wide Product Range',
+      title: 'Everything under one roof',
       description: 'Paint, hardware, plumbing, electrical and more under one single roof.',
     },
     {
       icon: 'ShieldCheck',
-      title: 'Leading Paint Brands',
+      title: 'Genuine brands only',
       description: 'JK Maxx, Birla Opus and Asian Paints available with genuine products.',
     },
     {
       icon: 'Tag',
-      title: 'Special Paint Deals',
+      title: 'Deals worth asking about',
       description: "Contact us for current prices and exclusive deals on top brands.",
     },
     {
       icon: 'Truck',
-      title: 'Free 30 KM Delivery',
+      title: 'We bring it to you',
       description: 'Convenient local delivery right to your doorstep or site.',
     },
     {
       icon: 'PhoneCall',
-      title: 'Easy Ordering',
+      title: 'Order by phone or WhatsApp',
       description: 'Simply call or WhatsApp your requirements for instant quotes.',
     },
     {
       icon: 'HeartHandshake',
-      title: 'Helpful Service',
+      title: 'Advice at the counter',
       description: 'Get expert guidance finding the right product, quantity, and finish.',
     },
   ],
@@ -368,19 +393,19 @@ export const STORE_CONFIG = {
   howToOrder: [
     {
       step: '01',
-      title: 'Send Your Requirement',
+      title: 'Tell us what you need',
       description: 'Call or WhatsApp us with the products, paint shades, or fittings you need.',
       icon: 'Send',
     },
     {
       step: '02',
-      title: 'Get Price & Availability',
+      title: 'We confirm price and stock',
       description: 'Our team confirms current price, availability, and applicable special offers.',
       icon: 'BadgeCheck',
     },
     {
       step: '03',
-      title: 'Get It Delivered',
+      title: 'We deliver it',
       description: 'Eligible orders can receive free delivery within our 30 KM service radius.',
       icon: 'PackageCheck',
     },
