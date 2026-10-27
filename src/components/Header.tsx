@@ -104,7 +104,9 @@ export const Header: React.FC = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-30 bg-white border-b border-gray-100 shadow-sm">
+    // The drawer lives inside this header, so it shares the header's stacking
+    // context — z-30 would leave it under the z-40 mobile bottom bar.
+    <header className={`sticky top-0 ${mobileMenuOpen ? 'z-50' : 'z-30'} bg-white border-b border-gray-100 shadow-sm`}>
       {/* Top Banner Notice */}
       <div className="bg-[#111827] text-white text-[11px] md:text-xs py-1.5 px-4 font-medium">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
@@ -417,7 +419,7 @@ export const Header: React.FC = () => {
             </div>
 
             {/* Bottom info */}
-            <div className="p-4 border-t border-gray-100 bg-gray-50 text-xs text-gray-600 space-y-2">
+            <div className="p-4 safe-area-pb-4 border-t border-gray-100 bg-gray-50 text-xs text-gray-600 space-y-2">
               <p className="font-bold text-gray-900">Santu Hardware Support</p>
               <p>{STORE_CONFIG.address}</p>
               <p className="font-mono">Phone: {STORE_CONFIG.phone} / {STORE_CONFIG.secondaryPhone}</p>

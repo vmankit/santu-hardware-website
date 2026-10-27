@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  /* Keeps fixed bottom content clear of the Android gesture bar and the
+     iOS home indicator. Needs viewport-fit=cover to resolve to anything. */
+  .safe-area-pb {
+    padding-bottom: calc(0.375rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .safe-area-pb-4 {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
