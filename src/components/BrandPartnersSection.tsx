@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { POPULAR_BRANDS } from '../data/storeData';
 import { ShieldCheck } from 'lucide-react';
 import { useCart } from '../context/CartContext';
@@ -11,6 +11,9 @@ const PAINT_BRANDS = [
 
 export const BrandPartnersSection: React.FC = () => {
   const { setSearchQuery } = useCart();
+  // Touch has no hover, so freeze the strip while a finger is down —
+  // otherwise a tap has to chase a moving card.
+  const [touchPaused, setTouchPaused] = useState(false);
 
   const handleBrandClick = (brandName: string) => {
     setSearchQuery(brandName);
@@ -35,11 +38,21 @@ export const BrandPartnersSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Paint brand logos — swipeable on touch, auto-scrolling where hover exists.
-            Duplicate copies only exist to make the desktop loop seamless. */}
+        {/* Paint brand logos on a continuous loop. The duplicate copies only
+            exist so the track is wider than the viewport and the loop seams. */}
         <div className="relative mb-8">
-          <div className="overflow-x-auto md:overflow-hidden snap-x snap-mandatory md:snap-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex w-max gap-3 md:gap-4 md:animate-marquee md:hover:[animation-play-state:paused] motion-reduce:animate-none">
+          <div
+            className="overflow-hidden"
+            onPointerDown={() => setTouchPaused(true)}
+            onPointerUp={() => setTouchPaused(false)}
+            onPointerCancel={() => setTouchPaused(false)}
+            onPointerLeave={() => setTouchPaused(false)}
+          >
+            <div
+              className={`flex w-max gap-3 md:gap-4 animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none ${
+                touchPaused ? '[animation-play-state:paused]' : ''
+              }`}
+            >
               {[0, 1, 2, 3].map((copy) =>
                 PAINT_BRANDS.map((brand) => (
                   <button
@@ -47,7 +60,7 @@ export const BrandPartnersSection: React.FC = () => {
                     onClick={() => handleBrandClick(brand.name)}
                     aria-hidden={copy > 0}
                     tabIndex={copy > 0 ? -1 : undefined}
-                    className="group w-[260px] sm:w-[300px] shrink-0 snap-start rounded-2xl border border-gray-200 bg-white hover:border-[#F8C200] hover:shadow-md transition-all p-5 flex flex-col items-center text-center max-md:[&:nth-child(n+4)]:hidden motion-reduce:[&:nth-child(n+4)]:hidden"
+                    className="group w-[260px] sm:w-[300px] shrink-0 rounded-2xl border border-gray-200 bg-white hover:border-[#F8C200] hover:shadow-md transition-all p-5 flex flex-col items-center text-center motion-reduce:[&:nth-child(n+4)]:hidden"
                   >
                     <div className="h-14 flex items-center justify-center mb-3">
                       <img
