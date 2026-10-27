@@ -22,3 +22,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Salesforce CLI state — unrelated tooling, not part of this site
+.sf/
+
+# Business data exports: these carry Purchase Price and margins,
+# and this repository is public.
+*.xlsx
+*.csv
+
+# Source artwork and scratch downloads kept locally, not shipped
+*.zip
+/809209386_*.jpg
+/file_*.png
