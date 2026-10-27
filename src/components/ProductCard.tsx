@@ -119,8 +119,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
       {/* Price & Action Row */}
       <div className="mt-auto pt-2 border-t border-gray-100 flex items-center justify-between gap-2">
-        <div>
-          <div className="flex items-baseline gap-1.5">
+        <div className="min-w-0">
+          <div className="flex items-baseline gap-1.5 flex-wrap">
             <span className="text-sm sm:text-base font-extrabold text-gray-900 font-mono">
               ₹ {cartItem ? cartItem.unitPrice : product.basePrice}
             </span>
@@ -139,13 +139,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {quantityInCart === 0 ? (
           <button
             onClick={() => addToCart(product, 1)}
-            className="flex items-center gap-1 bg-[#F8C200] hover:bg-[#E5B200] active:scale-95 text-gray-900 font-extrabold text-xs px-3.5 py-1.5 rounded-full transition-all shadow-sm"
+            className="flex shrink-0 items-center gap-1 bg-[#F8C200] hover:bg-[#E5B200] active:scale-95 text-gray-900 font-extrabold text-xs px-3.5 py-2 rounded-full transition-all shadow-sm"
           >
             <Plus className="w-3.5 h-3.5 stroke-[3]" />
             <span>Add</span>
           </button>
         ) : (
-          <div className="flex items-center gap-2 bg-gray-900 text-white rounded-full px-2 py-1 shadow-sm font-mono">
+          <div className="flex shrink-0 items-center gap-2 bg-gray-900 text-white rounded-full px-2 py-1 shadow-sm font-mono">
             <button
               onClick={() => updateQuantity(product.id, quantityInCart - 1)}
               className="size-5 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors"

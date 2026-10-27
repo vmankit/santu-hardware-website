@@ -30,12 +30,12 @@ export const AppContent: React.FC = () => {
         <HeroBanner />
         <CategoryGrid />
         <DealsOfTheWeek />
-        <TrustAuthenticityBanner />
+        <BrandPartnersSection />
         <NewlyLaunched />
         <CatalogSection />
         <CuratedCollections />
         <CalculatorSection />
-        <BrandPartnersSection />
+        <TrustAuthenticityBanner />
       </main>
 
       {/* Yellow Brand Footer */}

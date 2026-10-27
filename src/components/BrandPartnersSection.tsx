@@ -35,26 +35,39 @@ export const BrandPartnersSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Paint brand logos — the three we're authorised for */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-8">
-          {PAINT_BRANDS.map((brand) => (
-            <button
-              key={brand.name}
-              onClick={() => handleBrandClick(brand.name)}
-              className="group rounded-2xl border border-gray-200 bg-white hover:border-[#F8C200] hover:shadow-md transition-all p-5 flex flex-col items-center text-center"
-            >
-              <div className="h-14 flex items-center justify-center mb-3">
-                <img
-                  src={brand.logo}
-                  alt={brand.name}
-                  className="max-h-12 w-auto max-w-[170px] object-contain"
-                  loading="lazy"
-                />
-              </div>
-              <h3 className="font-extrabold text-sm text-gray-900">{brand.name}</h3>
-              <p className="text-[11px] text-gray-500 mt-0.5">{brand.note}</p>
-            </button>
-          ))}
+        {/* Paint brand logos — swipeable on touch, auto-scrolling where hover exists.
+            Duplicate copies only exist to make the desktop loop seamless. */}
+        <div className="relative mb-8">
+          <div className="overflow-x-auto md:overflow-hidden snap-x snap-mandatory md:snap-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex w-max gap-3 md:gap-4 md:animate-marquee md:hover:[animation-play-state:paused] motion-reduce:animate-none">
+              {[0, 1, 2, 3].map((copy) =>
+                PAINT_BRANDS.map((brand) => (
+                  <button
+                    key={`${copy}-${brand.name}`}
+                    onClick={() => handleBrandClick(brand.name)}
+                    aria-hidden={copy > 0}
+                    tabIndex={copy > 0 ? -1 : undefined}
+                    className="group w-[260px] sm:w-[300px] shrink-0 snap-start rounded-2xl border border-gray-200 bg-white hover:border-[#F8C200] hover:shadow-md transition-all p-5 flex flex-col items-center text-center max-md:[&:nth-child(n+4)]:hidden motion-reduce:[&:nth-child(n+4)]:hidden"
+                  >
+                    <div className="h-14 flex items-center justify-center mb-3">
+                      <img
+                        src={brand.logo}
+                        alt={copy === 0 ? brand.name : ''}
+                        className="max-h-12 w-auto max-w-[170px] object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                    <h3 className="font-extrabold text-sm text-gray-900">{brand.name}</h3>
+                    <p className="text-[11px] text-gray-500 mt-0.5">{brand.note}</p>
+                  </button>
+                ))
+              )}
+            </div>
+          </div>
+
+          {/* Edge fades so cards slide in and out softly */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-white to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white to-transparent" />
         </div>
 
         {/* Other brands we carry */}

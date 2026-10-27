@@ -57,12 +57,12 @@ export const Footer: React.FC = () => {
               Company
             </h3>
             <ul className="space-y-2.5 text-xs font-semibold text-gray-800">
-              <li><a href="#about" className="hover:text-black flex items-center gap-1.5"><ChevronRight className="w-3.5 h-3.5" /> About Us</a></li>
-              <li><a href={`https://wa.me/${STORE_CONFIG.whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="hover:text-black flex items-center gap-1.5"><ChevronRight className="w-3.5 h-3.5" /> Contact Us</a></li>
-              <li><a href="#deals-section" className="hover:text-black flex items-center gap-1.5"><ChevronRight className="w-3.5 h-3.5" /> Wholesale Price Lists</a></li>
-              <li><a href="#calculator-section" className="hover:text-black flex items-center gap-1.5"><ChevronRight className="w-3.5 h-3.5" /> Paint Calculator</a></li>
-              <li><a href="#categories-section" className="hover:text-black flex items-center gap-1.5"><ChevronRight className="w-3.5 h-3.5" /> Shop by Category</a></li>
-              <li><a href="#faq" className="hover:text-black flex items-center gap-1.5"><ChevronRight className="w-3.5 h-3.5" /> Contractor FAQ's</a></li>
+              <li><a href="#about" className="hover:text-black flex items-center gap-1.5 py-1.5"><ChevronRight className="w-3.5 h-3.5" /> About Us</a></li>
+              <li><a href={`https://wa.me/${STORE_CONFIG.whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="hover:text-black flex items-center gap-1.5 py-1.5"><ChevronRight className="w-3.5 h-3.5" /> Contact Us</a></li>
+              <li><a href="#deals-section" className="hover:text-black flex items-center gap-1.5 py-1.5"><ChevronRight className="w-3.5 h-3.5" /> Wholesale Price Lists</a></li>
+              <li><a href="#calculator-section" className="hover:text-black flex items-center gap-1.5 py-1.5"><ChevronRight className="w-3.5 h-3.5" /> Paint Calculator</a></li>
+              <li><a href="#categories-section" className="hover:text-black flex items-center gap-1.5 py-1.5"><ChevronRight className="w-3.5 h-3.5" /> Shop by Category</a></li>
+              <li><a href="#faq" className="hover:text-black flex items-center gap-1.5 py-1.5"><ChevronRight className="w-3.5 h-3.5" /> Contractor FAQ's</a></li>
             </ul>
           </div>
 
@@ -72,11 +72,11 @@ export const Footer: React.FC = () => {
               Policy &amp; Guarantee
             </h3>
             <ul className="space-y-2.5 text-xs font-semibold text-gray-800">
-              <li><a href="#policy" className="hover:text-black flex items-center gap-1.5"><ChevronRight className="w-3.5 h-3.5" /> 100% Genuine Guarantee</a></li>
-              <li><a href="#policy" className="hover:text-black flex items-center gap-1.5"><ChevronRight className="w-3.5 h-3.5" /> same-day Shipping Policy</a></li>
-              <li><a href="#policy" className="hover:text-black flex items-center gap-1.5"><ChevronRight className="w-3.5 h-3.5" /> Easy Hassle-Free Returns</a></li>
-              <li><a href="#policy" className="hover:text-black flex items-center gap-1.5"><ChevronRight className="w-3.5 h-3.5" /> Terms of Service</a></li>
-              <li><a href="#policy" className="hover:text-black flex items-center gap-1.5"><ChevronRight className="w-3.5 h-3.5" /> Privacy &amp; Data Security</a></li>
+              <li><a href="#policy" className="hover:text-black flex items-center gap-1.5 py-1.5"><ChevronRight className="w-3.5 h-3.5" /> 100% Genuine Guarantee</a></li>
+              <li><a href="#policy" className="hover:text-black flex items-center gap-1.5 py-1.5"><ChevronRight className="w-3.5 h-3.5" /> Same-day Shipping Policy</a></li>
+              <li><a href="#policy" className="hover:text-black flex items-center gap-1.5 py-1.5"><ChevronRight className="w-3.5 h-3.5" /> Easy Hassle-Free Returns</a></li>
+              <li><a href="#policy" className="hover:text-black flex items-center gap-1.5 py-1.5"><ChevronRight className="w-3.5 h-3.5" /> Terms of Service</a></li>
+              <li><a href="#policy" className="hover:text-black flex items-center gap-1.5 py-1.5"><ChevronRight className="w-3.5 h-3.5" /> Privacy &amp; Data Security</a></li>
             </ul>
           </div>
 
@@ -103,7 +103,7 @@ export const Footer: React.FC = () => {
                   Order on WhatsApp
                 </a>
               </p>
-              <p className="flex items-start gap-2">
+              <div className="flex items-start gap-2">
                 <Phone className="w-4 h-4 text-gray-900 shrink-0 mt-0.5" />
                 <div>
                   <a href={`tel:${STORE_CONFIG.phone.replace(/\s+/g, '')}`} className="hover:underline font-bold font-mono block">
@@ -113,7 +113,7 @@ export const Footer: React.FC = () => {
                     {STORE_CONFIG.secondaryPhone}
                   </a>
                 </div>
-              </p>
+              </div>
             </div>
           </div>
 

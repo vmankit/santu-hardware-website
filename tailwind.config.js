@@ -43,7 +43,20 @@ export default {
       },
       aspectRatio: {
         '9/16': '9 / 16',
-      }
+      },
+      maxWidth: {
+        '6xl': '88rem',
+        '7xl': '96rem',
+      },
+      keyframes: {
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
+      },
+      animation: {
+        marquee: 'marquee 32s linear infinite',
+      },
     },
   },
   plugins: [],

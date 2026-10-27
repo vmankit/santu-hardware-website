@@ -1,6 +1,7 @@
 import React from 'react';
-import { Home, Grid, ShoppingBag, MessageCircle, Phone } from 'lucide-react';
+import { Home, Grid, ShoppingBag, Phone } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { STORE_CONFIG } from '../data/storeData';
 
 export const MobileBottomBar: React.FC = () => {
@@ -67,7 +68,7 @@ export const MobileBottomBar: React.FC = () => {
           rel="noreferrer noopener"
           className="flex flex-col items-center gap-0.5 text-[#25D366] py-1"
         >
-          <MessageCircle className="w-5 h-5 fill-current" />
+          <WhatsAppIcon className="w-5 h-5" />
           <span className="text-[10px] font-bold">WhatsApp</span>
         </a>
       </div>

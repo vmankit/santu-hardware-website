@@ -46,7 +46,7 @@ export const CategoryGrid: React.FC = () => {
         </div>
 
         {/* 24 Category Tiles Grid  */}
-        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-x-2.5 gap-y-6 md:gap-x-4 md:gap-y-8">
+        <div className="grid grid-cols-3 sm:grid-cols-6 md:grid-cols-8 gap-x-2.5 gap-y-6 md:gap-x-4 md:gap-y-8">
           {CATEGORIES.map((cat) => {
             const isSelected = activeCategory === cat.name;
 

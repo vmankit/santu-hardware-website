@@ -8,10 +8,10 @@ import {
   ShoppingBag, 
   Zap, 
   Truck, 
-  CheckCircle2, 
-  MessageCircle,
+  CheckCircle2,
   ShieldCheck
 } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { STORE_CONFIG } from '../data/storeData';
 
 export const CartDrawer: React.FC = () => {
@@ -388,7 +388,7 @@ export const CartDrawer: React.FC = () => {
                 onClick={handleSendOrder}
                 className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1EBE5A] text-white font-extrabold text-sm py-3.5 rounded-xl transition-colors shadow-sm"
               >
-                <MessageCircle className="w-5 h-5 fill-current" />
+                <WhatsAppIcon className="w-5 h-5" />
                 <span>Send order on WhatsApp · ₹{grandTotal}</span>
               </button>
 

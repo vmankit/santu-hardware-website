@@ -69,11 +69,11 @@ export const HeroBanner: React.FC = () => {
                   setFeedback(null);
                 }}
                 placeholder="Enter 6-digit Pincode"
-                className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 text-xs font-mono font-bold text-gray-900 outline-none focus:border-[#059669]"
+                className="flex-1 min-w-0 h-11 bg-gray-50 border border-gray-200 rounded-lg px-3 text-xs font-mono font-bold text-gray-900 outline-none focus:border-[#059669]"
               />
               <button
                 type="submit"
-                className="bg-[#111827] hover:bg-black text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors shrink-0"
+                className="h-11 bg-[#111827] hover:bg-black text-white text-xs font-bold px-4 rounded-lg transition-colors shrink-0"
               >
                 Check Slot
               </button>
@@ -96,7 +96,7 @@ export const HeroBanner: React.FC = () => {
                     const el = document.getElementById('catalog-section');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="text-[11px] font-semibold bg-gray-100 hover:bg-[#F8C200]/30 hover:border-[#F8C200] border border-transparent text-gray-700 px-2 py-0.5 rounded-md transition-colors"
+                  className="inline-flex min-h-9 items-center text-[11px] font-semibold bg-gray-100 hover:bg-[#F8C200]/30 hover:border-[#F8C200] border border-transparent text-gray-700 px-3 rounded-md transition-colors"
                 >
                   {chip.label}
                 </button>

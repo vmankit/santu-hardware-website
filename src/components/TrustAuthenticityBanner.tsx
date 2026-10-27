@@ -43,7 +43,7 @@ export const TrustAuthenticityBanner: React.FC = () => {
                 <Zap className="w-5 h-5" />
               </div>
               <h3 className="font-extrabold text-base text-gray-900 mb-1.5">
-                same-day Site Delivery
+                Same-day Site Delivery
               </h3>
               <p className="text-xs text-gray-600 leading-relaxed">
                 When you run out of plumbing tees, primer, or copper cable mid-shift, contractors lose valuable labour hours. Santu Hardware's express dispatch delivers to your site the same day, free within 30 km.
