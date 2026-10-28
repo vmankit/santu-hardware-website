@@ -52,6 +52,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     ? Math.round(((product.compareAtPrice - product.basePrice) / product.compareAtPrice) * 100)
     : null;
 
+  // The brand already has its own line, so drop a repeated prefix from the
+  // title. The stored title keeps it — that's what the WhatsApp order says.
+  const displayTitle =
+    product.brand && product.title.toLowerCase().startsWith(product.brand.toLowerCase())
+      ? product.title.slice(product.brand.length).replace(/^[\s,-]+/, '')
+      : product.title;
+
   return (
     <article className="group relative flex flex-col bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-gray-200 transition-all duration-200 p-3.5 sm:p-4 h-full">
       
@@ -106,9 +113,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <span className="text-gray-500">Free &gt; ₹500</span>
       </div>
 
+      {/* Brand */}
+      {product.brand && (
+        <p className="text-[10px] font-extrabold uppercase tracking-wider text-[#059669] mb-0.5">
+          {product.brand}
+        </p>
+      )}
+
       {/* Product Title */}
       <h3 className="font-bold text-xs sm:text-sm text-gray-900 leading-snug line-clamp-2 mb-1 group-hover:text-black">
-        {product.title}
+        {displayTitle}
       </h3>
 
       {/* Unit info */}

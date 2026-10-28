@@ -9,7 +9,8 @@ import {
   Zap, 
   Truck, 
   CheckCircle2,
-  ShieldCheck
+  ShieldCheck,
+  Package
 } from 'lucide-react';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import { STORE_CONFIG } from '../data/storeData';
@@ -244,12 +245,19 @@ export const CartDrawer: React.FC = () => {
                   key={item.product.id}
                   className="flex gap-3 p-3 bg-white rounded-2xl border border-gray-100 shadow-xs"
                 >
-                  {/* Thumbnail */}
-                  <img
-                    src={item.product.image}
-                    alt={item.product.title}
-                    className="size-16 rounded-xl object-contain bg-gray-50 p-1 border border-gray-100 shrink-0"
-                  />
+                  {/* Thumbnail — products without a photo yet get the same
+                      placeholder treatment as the catalogue card. */}
+                  {item.product.image ? (
+                    <img
+                      src={item.product.image}
+                      alt={item.product.title}
+                      className="size-16 rounded-xl object-contain bg-gray-50 p-1 border border-gray-100 shrink-0"
+                    />
+                  ) : (
+                    <div className="size-16 rounded-xl bg-gray-50 border border-gray-100 shrink-0 flex items-center justify-center text-gray-400">
+                      <Package className="w-6 h-6" strokeWidth={1.75} />
+                    </div>
+                  )}
 
                   {/* Info */}
                   <div className="flex-1 min-w-0">
