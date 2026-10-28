@@ -1186,7 +1186,7 @@ export const CURATED_COLLECTIONS = [
     id: "paint-studio",
     title: "Paint Studio & Primers",
     subtitle: "Asian Paints & Birla Opus High-Sheen Emulsions, Putty & Primers",
-    image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80",
+    image: "/images/collections/paint-studio.jpg",
     link: "painting",
     tag: "Wholesale Rates"
   },
@@ -1194,7 +1194,7 @@ export const CURATED_COLLECTIONS = [
     id: "architectural-hardware",
     title: "Architectural Hardware",
     subtitle: "Hettich Soft-Close Hinges, Channels & Godrej Locks",
-    image: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80",
+    image: "/images/collections/architectural-hardware.jpg",
     link: "hinges-channels-handles",
     tag: "Original German Tech"
   },
@@ -1202,7 +1202,7 @@ export const CURATED_COLLECTIONS = [
     id: "plumbing-fittings",
     title: "Plumbing, Tanks & Fittings",
     subtitle: "Prince Storefit Tanks, Astral CPVC, Supreme & Skipper Valves",
-    image: "https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=800&q=80",
+    image: "/images/collections/plumbing-fittings.jpg",
     link: "plumbing",
     tag: "100% Genuine"
   },
@@ -1210,7 +1210,7 @@ export const CURATED_COLLECTIONS = [
     id: "sanitary-bath",
     title: "Sanitaryware & Bath Fittings",
     subtitle: "Trovant Western Commodes, B Venus Cocks & Health Faucets",
-    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+    image: "/images/collections/sanitary-bath.png",
     link: "sanitary-bath-fittings",
     tag: "Wholesale Rates"
   },
@@ -1218,9 +1218,17 @@ export const CURATED_COLLECTIONS = [
     id: "electrical-piping",
     title: "Electrical Wiring & GI Boxes",
     subtitle: "Anchor Concealed GI Boxes, MCB DBs & Polycab / KEI FR Wires",
-    image: "https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&w=800&q=80",
+    image: "/images/collections/electrical-wiring.jpg",
     link: "wires",
     tag: "Instant Delivery"
+  },
+  {
+    id: "power-tools",
+    title: "Power Tools & Cutting Blades",
+    subtitle: "Bosch Drills, Angle Grinders, Diamond Blades & Fasteners",
+    image: "/images/collections/power-tools.jpg",
+    link: "power-tools-accessories",
+    tag: "German Tech"
   }
 ];
 
@@ -1258,23 +1266,22 @@ export const TESTIMONIALS: VideoTestimonial[] = [
 ];
 
 export const POPULAR_BRANDS = [
-  { name: "Asian Paints", category: "Paints & Waterproofing", tag: "Genuine" },
-  { name: "JK Maxx Paints", category: "Paints, Putty & Primers", tag: "Genuine" },
-  { name: "Birla Opus", category: "Interior & Exterior Paints", tag: "Authorised" },
-  { name: "Prince", category: "Pipes & Water Tanks", tag: "Original" },
-  { name: "Supreme", category: "CPVC & Drainage", tag: "Certified" },
-  { name: "Skipper", category: "Plumbing & Valves", tag: "Heavy Brass" },
-  { name: "Astral", category: "Solvent Cement & CPVC", tag: "Certified" },
-  { name: "Trovant", category: "Sanitary & Commodes", tag: "10 Yrs Warranty" },
-  { name: "B Venus", category: "Bath Cocks & Faucets", tag: "Solid Brass" },
-  { name: "Anchor", category: "GI Boxes & MCB DBs", tag: "Heavy Gauge" },
-  { name: "Fevicol (Pidilite)", category: "Adhesives & Chemicals", tag: "Original" },
-  { name: "Dr. Fixit", category: "Waterproofing", tag: "Water Shield" },
-  { name: "Polycab", category: "Wires & Cables", tag: "FR-LSH" },
-  { name: "KEI Wires", category: "Cables & Conduits", tag: "ISI Marked" },
-  { name: "Havells", category: "Switches & Lighting", tag: "Authorised" },
-  { name: "Hettich", category: "Architectural Hardware", tag: "German Tech" },
-  { name: "Godrej", category: "Locks & Security", tag: "100% Genuine" },
-  { name: "Bosch", category: "Power Tools", tag: "German Quality" }
-
+  { name: "Asian Paints", category: "Paints & Waterproofing", tag: "Genuine", logo: "/images/brands/asian-paints.png" },
+  { name: "JK Maxx Paints", category: "Paints, Putty & Primers", tag: "Genuine", logo: "/images/brands/jk-maxx.png" },
+  { name: "Birla Opus", category: "Interior & Exterior Paints", tag: "Authorised", logo: "/images/brands/birla-opus.png" },
+  { name: "Prince", category: "Pipes & Water Tanks", tag: "Original", logo: "/images/brands/prince.png" },
+  { name: "Supreme", category: "CPVC & Drainage", tag: "Certified", logo: "/images/brands/supreme.png" },
+  { name: "Skipper", category: "Plumbing & Valves", tag: "Heavy Brass", logo: "/images/brands/skipper.svg" },
+  { name: "Astral", category: "Solvent Cement & CPVC", tag: "Certified", logo: "/images/brands/astral.png" },
+  { name: "Trovant", category: "Sanitary & Commodes", tag: "10 Yrs Warranty", logo: "/images/brands/trovant.png" },
+  { name: "B Venus", category: "Bath Cocks & Faucets", tag: "Solid Brass", logo: "/images/brands/b-venus.png" },
+  { name: "Anchor", category: "GI Boxes & MCB DBs", tag: "Heavy Gauge", logo: "/images/brands/anchor.svg" },
+  { name: "Fevicol (Pidilite)", category: "Adhesives & Chemicals", tag: "Original", logo: "/images/brands/fevicol.png" },
+  { name: "Dr. Fixit", category: "Waterproofing", tag: "Water Shield", logo: "/images/brands/dr-fixit.png" },
+  { name: "Polycab", category: "Wires & Cables", tag: "FR-LSH", logo: "/images/brands/polycab.png" },
+  { name: "KEI Wires", category: "Cables & Conduits", tag: "ISI Marked", logo: "/images/brands/kei.png" },
+  { name: "Havells", category: "Switches & Lighting", tag: "Authorised", logo: "/images/brands/havells.svg" },
+  { name: "Hettich", category: "Architectural Hardware", tag: "German Tech", logo: "/images/brands/hettich.svg" },
+  { name: "Godrej", category: "Locks & Security", tag: "100% Genuine", logo: "/images/brands/godrej.svg" },
+  { name: "Bosch", category: "Power Tools", tag: "German Quality", logo: "/images/brands/bosch.svg" }
 ];

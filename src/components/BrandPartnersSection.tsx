@@ -87,17 +87,25 @@ export const BrandPartnersSection: React.FC = () => {
         <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 text-center">
           Also in stock
         </h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
           {POPULAR_BRANDS.filter((b) => !PAINT_BRANDS.some((p) => p.name === b.name)).map((brand, idx) => (
             <button
               key={idx}
               onClick={() => handleBrandClick(brand.name)}
-              className="group p-3.5 rounded-xl border border-gray-200/80 bg-gray-50/50 hover:bg-white hover:border-[#F8C200] hover:shadow-md transition-all text-left flex flex-col justify-between"
+              className="group p-3.5 rounded-xl border border-gray-200/80 bg-white hover:border-[#F8C200] hover:shadow-md transition-all text-left flex flex-col justify-between"
             >
-              <div>
-                <span className="text-[10px] font-extrabold text-[#059669] bg-emerald-50 px-1.5 py-0.5 rounded uppercase tracking-wider inline-block mb-1">
+              <div className="w-full">
+                <span className="text-[10px] font-extrabold text-[#059669] bg-emerald-50 px-1.5 py-0.5 rounded uppercase tracking-wider inline-block mb-2">
                   {brand.tag}
                 </span>
+                <div className="h-11 w-full flex items-center justify-start mb-2">
+                  <img
+                    src={brand.logo}
+                    alt={brand.name}
+                    className="max-h-9 max-w-[115px] w-auto object-contain object-left group-hover:scale-105 transition-transform duration-200"
+                    loading="lazy"
+                  />
+                </div>
                 <h4 className="font-extrabold text-sm text-gray-900 group-hover:text-black">
                   {brand.name}
                 </h4>

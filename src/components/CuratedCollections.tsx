@@ -45,7 +45,7 @@ export const CuratedCollections: React.FC = () => {
                 <img
                   src={col.image}
                   alt={col.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className={`w-full h-full object-cover ${col.id === 'sanitary-bath' ? 'object-bottom' : 'object-center'} transition-transform duration-500 group-hover:scale-105`}
                   loading="lazy"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80';
