@@ -1,3 +1,5 @@
+import { IMPORTED_PRODUCTS } from './importedProducts';
+
 export interface BulkPriceTier {
   quantity: number;
   price: number;
@@ -11,7 +13,7 @@ export interface Product {
   basePrice: number;
   compareAtPrice?: number | null;
   unit: string;
-  image: string;
+  image?: string;
   badge?: string;
   deliveryTime?: string;
   payOnDelivery?: boolean;
@@ -1177,7 +1179,9 @@ export const PRODUCTS: Product[] = [
     freeDeliveryThreshold: 500,
     rating: 4.8,
     reviewCount: 110
-  }
+  },
+
+  ...IMPORTED_PRODUCTS
 
 ];
 
@@ -1202,7 +1206,7 @@ export const CURATED_COLLECTIONS = [
     id: "plumbing-fittings",
     title: "Plumbing, Tanks & Fittings",
     subtitle: "Prince Storefit Tanks, Astral CPVC, Supreme & Skipper Valves",
-    image: "/images/collections/plumbing-fittings.jpg",
+    image: "/images/collections/plumbing-fittings.jpg?v=2",
     link: "plumbing",
     tag: "100% Genuine"
   },
@@ -1218,7 +1222,7 @@ export const CURATED_COLLECTIONS = [
     id: "electrical-piping",
     title: "Electrical Wiring & GI Boxes",
     subtitle: "Anchor Concealed GI Boxes, MCB DBs & Polycab / KEI FR Wires",
-    image: "/images/collections/electrical-wiring.jpg",
+    image: "/images/collections/electrical-wiring.jpg?v=2",
     link: "wires",
     tag: "Instant Delivery"
   },

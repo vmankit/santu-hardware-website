@@ -1,11 +1,14 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { PRODUCTS } from '../data/storeData';
 import { ProductCard } from './ProductCard';
 import { useCart } from '../context/CartContext';
-import { Filter, X, Search } from 'lucide-react';
+import { Filter, X, Search, ChevronDown } from 'lucide-react';
+
+const PAGE_SIZE = 24;
 
 export const CatalogSection: React.FC = () => {
   const { activeCategory, setActiveCategory, searchQuery, setSearchQuery } = useCart();
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const filteredProducts = useMemo(() => {
     return PRODUCTS.filter((p) => {
@@ -24,6 +27,15 @@ export const CatalogSection: React.FC = () => {
       return true;
     });
   }, [activeCategory, searchQuery]);
+
+  // A new filter should start the grid fresh rather than keep whatever
+  // page depth the previous (likely much larger or smaller) list was at.
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [activeCategory, searchQuery]);
+
+  const visibleProducts = filteredProducts.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredProducts.length;
 
   return (
     <section className="py-8 md:py-12 bg-gray-50 border-t border-gray-100" id="catalog-section">
@@ -67,11 +79,28 @@ export const CatalogSection: React.FC = () => {
 
         {/* Product Grid */}
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4 md:gap-6">
-            {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4 md:gap-6">
+              {visibleProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+
+            {hasMore && (
+              <div className="flex flex-col items-center mt-8">
+                <button
+                  onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+                  className="flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-900 font-bold text-sm px-6 py-3 rounded-xl border border-gray-200 shadow-sm transition-colors"
+                >
+                  Show more products
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                <p className="text-[11px] text-gray-400 mt-2">
+                  Showing {visibleProducts.length} of {filteredProducts.length}
+                </p>
+              </div>
+            )}
+          </>
         ) : (
           <div className="bg-white rounded-2xl border border-gray-200 p-8 text-center max-w-md mx-auto my-6">
             <div className="size-14 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center mx-auto mb-3">

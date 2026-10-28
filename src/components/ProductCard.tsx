@@ -1,15 +1,43 @@
 import React, { useState } from 'react';
 import type { Product } from '../data/storeData';
 import { useCart } from '../context/CartContext';
-import { Plus, Minus, Zap, Tag, ChevronDown, Check } from 'lucide-react';
+import { Plus, Minus, Zap, Tag, ChevronDown, Check, Package } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
 }
 
+// Soft per-category tint for products that don't have a photo yet, so the
+// placeholder reads as "photo coming soon" rather than a broken image.
+const CATEGORY_PLACEHOLDER_STYLE: Record<string, string> = {
+  'Painting & Putty': 'bg-amber-50 text-amber-600',
+  'CPVC & Water Tanks': 'bg-blue-50 text-blue-600',
+  'Sanitary & Bath': 'bg-cyan-50 text-cyan-600',
+  'Water Proofing': 'bg-sky-50 text-sky-600',
+  'Wires & MCBs': 'bg-yellow-50 text-yellow-700',
+  'Conduits & GI Boxes': 'bg-slate-50 text-slate-600',
+  'Switches & Sockets': 'bg-orange-50 text-orange-600',
+  'Fevicol & Adhesives': 'bg-lime-50 text-lime-700',
+  'Power Tools': 'bg-red-50 text-red-600',
+  'Door Locks & Hardware': 'bg-stone-50 text-stone-600',
+  'Hinges & Handles': 'bg-zinc-50 text-zinc-600',
+  'Kitchen Sinks & Faucets': 'bg-teal-50 text-teal-600',
+  'Geysers & Water Heaters': 'bg-rose-50 text-rose-600',
+  'Ceiling & Exhaust Fans': 'bg-indigo-50 text-indigo-600',
+  'Lighting & LEDs': 'bg-yellow-50 text-yellow-600',
+  'General Hardware & Tools': 'bg-gray-100 text-gray-500',
+  'Tiling & Adhesives': 'bg-orange-50 text-orange-700',
+  'Safety & Workwear': 'bg-emerald-50 text-emerald-700',
+  'Kitchen Systems': 'bg-fuchsia-50 text-fuchsia-600',
+  'Wardrobe & Bed Fittings': 'bg-purple-50 text-purple-600',
+  'Glass Door Hardware': 'bg-sky-50 text-sky-700',
+};
+
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { cart, addToCart, updateQuantity } = useCart();
   const [showTiers, setShowTiers] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
+  const showPlaceholder = !product.image || imageFailed;
 
   // Check if product is in cart
   const cartItem = cart.find((item) => item.product.id === product.id);
@@ -51,15 +79,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
       {/* Product Image */}
       <div className="relative w-full aspect-square rounded-xl bg-gray-50/70 p-3 mb-3 flex items-center justify-center overflow-hidden">
-        <img
-          src={product.image}
-          alt={product.title}
-          className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-          loading="lazy"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?auto=format&fit=crop&w=400&q=80';
-          }}
-        />
+        {showPlaceholder ? (
+          <div className={`w-full h-full rounded-lg flex flex-col items-center justify-center gap-1.5 ${CATEGORY_PLACEHOLDER_STYLE[product.category] || 'bg-gray-100 text-gray-500'}`}>
+            <Package className="w-7 h-7 sm:w-8 sm:h-8" strokeWidth={1.75} />
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wide text-center px-2 leading-tight opacity-80">
+              Photo coming soon
+            </span>
+          </div>
+        ) : (
+          <img
+            src={product.image}
+            alt={product.title}
+            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+            onError={() => setImageFailed(true)}
+          />
+        )}
       </div>
 
       {/* Trust Tag Strip */}
