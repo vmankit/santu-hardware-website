@@ -37,6 +37,19 @@ export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
+  // On phones the catalog sits below the fold, so filtering by typing here
+  // leaves the user staring at an unchanged hero with no idea it worked.
+  // Scroll down once, the moment they start typing — not on every
+  // keystroke, so it doesn't fight a search they're still refining.
+  const handleMobileSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const wasEmpty = !searchQuery.trim();
+    setSearchQuery(value);
+    if (wasEmpty && value.trim()) {
+      document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   // Animated search rotating keywords
   const searchKeywords = ['Asian Paints', 'Wall putty', 'KEI wire', 'LED bulb', 'CPVC pipe', 'Door lock', 'Fevicol'];
   const [keywordIndex, setKeywordIndex] = useState(0);
@@ -289,7 +302,7 @@ export const Header: React.FC = () => {
             <input
               type="text"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={handleMobileSearchChange}
               placeholder={`Search "${searchKeywords[keywordIndex]}"...`}
               className="w-full bg-transparent text-xs text-gray-900 placeholder-gray-400 outline-none"
             />
